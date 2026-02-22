@@ -1,16 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
-
-interface Partner {
-  name: string;
-  logo: string;
-  url: string;
-  className?: string;
-  whiteLogo?: boolean;
-}
+import { cn } from '@/lib/utils';
+import { Partner } from '@/types/partner';
 
 interface PartnersCarouselProps {
   partners: Partner[];
@@ -51,25 +45,38 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ partners }) 
 
       <div className="overflow-hidden py-8 cursor-grab active:cursor-grabbing" ref={emblaRef}>
         <div className="flex touch-pan-y">
-          {displayedPartners.map((partner, index) => (
-            <div key={`${partner.name}-${index}`} className="flex-[0_0_auto] min-w-0 px-8 md:px-14 flex items-center justify-center relative z-20">
-              <a 
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block transition-transform duration-300 hover:scale-110 select-none"
-                draggable={false}
-              >
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name} 
-                  className={`w-auto object-contain max-w-[200px] md:max-w-[250px] ${partner.className || 'h-16'} ${partner.whiteLogo ? 'bg-neutral-800 dark:bg-transparent p-2 rounded-full shadow-sm' : ''}`}
-                  style={{ imageRendering: 'high-quality' }}
+          {displayedPartners.map((partner, index) => {
+            const logoClasses = cn(
+              "w-auto object-contain",
+              partner.className || "h-16",
+              partner.whiteLogo && "bg-neutral-800 dark:bg-transparent p-2 rounded-full shadow-sm"
+            );
+
+            return (
+              <div key={`${partner.name}-${index}`} className="flex-[0_0_auto] min-w-0 px-8 md:px-14 flex items-center justify-center relative z-20">
+                <a 
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition-transform duration-300 hover:scale-110 select-none"
                   draggable={false}
-                />
-              </a>
-            </div>
-          ))}
+                >
+                  {typeof partner.logo === 'string' ? (
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name} 
+                      className={logoClasses}
+                      draggable={false}
+                    />
+                  ) : (
+                    React.isValidElement(partner.logo) && React.cloneElement(partner.logo as React.ReactElement, {
+                      className: cn(logoClasses, (partner.logo.props as any).className)
+                    })
+                  )}
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

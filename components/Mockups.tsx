@@ -5,7 +5,7 @@ export const Mockups = () => {
     <section className="py-32 overflow-hidden bg-background-light dark:bg-background-dark relative">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-24 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-8 text-neutral-dark dark:text-white">
+          <h2 className="text-4xl md:text-7xl font-black tracking-normal leading-[1.2] mb-8 text-neutral-dark dark:text-white">
             THE POWER OF<br />
             <span className="text-wihda-blue">CONNECTION</span> IN<br />
             <span className="text-wihda-green">YOUR POCKET.</span>
