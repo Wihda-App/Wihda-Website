@@ -1,3 +1,4 @@
+import { getDictionary } from "@/locales/dictionaries";
 import { Footer } from "@/components/Footer";
 import { LegalSidebar } from "@/components/legal/LegalSidebar";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,45 +10,54 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Metadata } from "next";
-
 export const metadata: Metadata = {
 	title: "Wihda Legal - Terms of Service",
 	description:
 		"Understand the rules and regulations governing the use of the Wihda platform.",
 };
-
-export default function TermsPage() {
+export default async function TermsPage({
+	params,
+}: {
+	params: Promise<{
+		lang: string;
+	}>;
+}) {
+	const { lang } = await params;
+	const dict = await getDictionary(lang);
 	return (
 		<section>
 			<main className="grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 				{/* Mobile Sidebar Trigger */}
 				<div className="w-full max-w-4xl flex items-center justify-start mb-6 lg:hidden">
 					<SidebarTrigger />
-					<span className="ml-2 font-semibold text-sm">Menu</span>
+					<span className="ml-2 font-semibold text-sm">
+						{dict.TermsPage.text_1}
+					</span>
 				</div>
 
 				{/* Header Section */}
 				<div className="w-full max-w-200 flex flex-col items-center text-center mb-12">
 					<nav className="flex items-center gap-2 text-sm font-medium mb-6 text-muted-foreground">
 						<Link href="/" className="hover:text-primary transition-colors">
-							Home
+							{dict.TermsPage.text_2}
 						</Link>
-						<span className="material-icons text-sm">chevron_right</span>
-						<span className="text-foreground">Legal Center</span>
+						<span className="material-icons text-sm">
+							{dict.TermsPage.text_3}
+						</span>
+						<span className="text-foreground">{dict.TermsPage.text_4}</span>
 					</nav>
 
 					<div className="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center mb-6">
 						<span className="material-icons text-3xl text-secondary">
-							description
+							{dict.TermsPage.text_5}
 						</span>
 					</div>
 
 					<h1 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4 tracking-tight">
-						Terms of Service
+						{dict.TermsPage.text_6}
 					</h1>
 					<p className="text-xl text-muted-foreground mb-8">
-						Please read these terms carefully before using our service. They
-						outline your rights and obligations as a user of the Wihda platform.
+						{dict.TermsPage.text_7}
 					</p>
 				</div>
 
@@ -62,75 +72,56 @@ export default function TermsPage() {
 							<div className="flex justify-between items-start mb-10">
 								<div>
 									<h2 className="text-3xl font-bold text-foreground mb-2">
-										Terms of Service
+										{dict.TermsPage.text_8}
 									</h2>
 									<p className="text-muted-foreground text-sm">
-										Agreement between User and Wihda.
+										{dict.TermsPage.text_9}
 									</p>
 								</div>
 								<Badge
 									variant="secondary"
 									className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border border-secondary/20"
 								>
-									<span className="material-icons text-sm">check_circle</span>
-									Last Updated: Oct 24, 2025
+									<span className="material-icons text-sm">
+										{dict.TermsPage.text_10}
+									</span>
+									{dict.TermsPage.text_11}
 								</Badge>
 							</div>
 
 							<div className="prose prose-slate dark:prose-invert max-w-none text-muted-foreground transition-colors">
 								<section id="introduction" className="mb-12 scroll-mt-32">
 									<h3 className="text-2xl font-bold text-foreground mb-4">
-										1. Acceptance of Terms
+										{dict.TermsPage.text_12}
 									</h3>
-									<p className="mb-4">
-										By accessing or using the Wihda platform, you agree to be
-										bound by these Terms. If you disagree with any part of the
-										terms, then you may not access the Service.
-									</p>
+									<p className="mb-4">{dict.TermsPage.text_13}</p>
 								</section>
 
 								<div className="w-full h-px bg-border my-8"></div>
 
 								<section id="accounts" className="mb-12 scroll-mt-32">
 									<h3 className="text-2xl font-bold text-foreground mb-4">
-										2. Accounts
+										{dict.TermsPage.text_14}
 									</h3>
-									<p className="mb-4">
-										When you create an account with us, you must provide us
-										information that is accurate, complete, and current at all
-										times. Failure to do so constitutes a breach of the Terms,
-										which may result in immediate termination of your account on
-										our Service.
-									</p>
+									<p className="mb-4">{dict.TermsPage.text_15}</p>
 								</section>
 
 								<div className="w-full h-px bg-border my-8"></div>
 
 								<section id="content" className="mb-12 scroll-mt-32">
 									<h3 className="text-2xl font-bold text-foreground mb-4">
-										3. Content
+										{dict.TermsPage.text_16}
 									</h3>
-									<p className="mb-4">
-										Our Service allows you to post, link, store, share and
-										otherwise make available certain information, text,
-										graphics, videos, or other material ("Content"). You are
-										responsible for the Content that you post to the Service,
-										including its legality, reliability, and appropriateness.
-									</p>
+									<p className="mb-4">{dict.TermsPage.text_17}</p>
 								</section>
 
 								<div className="w-full h-px bg-border my-8"></div>
 
 								<section id="termination" className="mb-12 scroll-mt-32">
 									<h3 className="text-2xl font-bold text-foreground mb-4">
-										4. Termination
+										{dict.TermsPage.text_18}
 									</h3>
-									<p className="mb-4">
-										We may terminate or suspend access to our Service
-										immediately, without prior notice or liability, for any
-										reason whatsoever, including without limitation if you
-										breach the Terms.
-									</p>
+									<p className="mb-4">{dict.TermsPage.text_19}</p>
 								</section>
 							</div>
 						</CardContent>
@@ -148,7 +139,7 @@ export default function TermsPage() {
 				aria-hidden="true"
 			/>
 
-			<Footer />
+			<Footer dict={dict} />
 		</section>
 	);
 }

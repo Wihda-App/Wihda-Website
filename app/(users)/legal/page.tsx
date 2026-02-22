@@ -1,3 +1,4 @@
+import { getDictionary } from "@/locales/dictionaries";
 import { Footer } from "@/components/Footer";
 import { LegalContent } from "@/components/legal/LegalContent";
 import { LegalSidebar } from "@/components/legal/LegalSidebar";
@@ -8,52 +9,60 @@ import {
 } from "@/components/ui/sidebar";
 import { Metadata } from "next";
 import Link from "next/link";
-
 export const metadata: Metadata = {
 	title: "Wihda Legal - Privacy & Terms",
 	description:
 		"Transparency & Trust. Understand your rights and our responsibilities.",
 };
-
-export default function LegalPage() {
+export default async function LegalPage({
+	params,
+}: {
+	params: Promise<{
+		lang: string;
+	}>;
+}) {
+	const { lang } = await params;
+	const dict = await getDictionary(lang);
 	return (
 		<SidebarProvider defaultOpen={true}>
-			<LegalSidebar />
+			<LegalSidebar dict={dict} />
 			<SidebarInset className="bg-background min-h-[calc(100vh-4rem)] pt-20 md:pt-24 pb-10">
 				<main className="grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 					{/* Mobile Sidebar Trigger */}
 					<div className="w-full max-w-4xl flex items-center justify-start mb-6 lg:hidden">
 						<SidebarTrigger />
-						<span className="ml-2 font-semibold text-sm">Menu</span>
+						<span className="ml-2 font-semibold text-sm">
+							{dict.LegalPage.text_1}
+						</span>
 					</div>
 
 					{/* Header Section */}
 					<div className="w-full max-w-200 flex flex-col items-center text-center mb-12">
 						<nav className="flex items-center gap-2 text-sm font-medium mb-6 text-muted-foreground">
 							<Link href="/" className="hover:text-primary transition-colors">
-								Home
+								{dict.LegalPage.text_2}
 							</Link>
-							<span className="material-icons text-sm">chevron_right</span>
-							<span className="text-foreground">Legal Center</span>
+							<span className="material-icons text-sm">
+								{dict.LegalPage.text_3}
+							</span>
+							<span className="text-foreground">{dict.LegalPage.text_4}</span>
 						</nav>
 
 						<div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
 							<span className="material-icons text-3xl text-primary">
-								gavel
+								{dict.LegalPage.text_5}
 							</span>
 						</div>
 
 						<h1 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4 tracking-tight">
-							Transparency & Trust
+							{dict.LegalPage.text_6}
 						</h1>
 						<p className="text-xl text-muted-foreground mb-8">
-							We believe in building a civic platform rooted in clarity.
-							Understand your rights, our responsibilities, and how we protect
-							your data.
+							{dict.LegalPage.text_7}
 						</p>
 					</div>
 
-					<LegalContent />
+					<LegalContent dict={dict} />
 				</main>
 
 				{/* Background blobs */}
@@ -66,7 +75,7 @@ export default function LegalPage() {
 					aria-hidden="true"
 				/>
 
-				<Footer />
+				<Footer dict={dict} />
 			</SidebarInset>
 		</SidebarProvider>
 	);

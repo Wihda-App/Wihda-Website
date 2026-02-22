@@ -1,41 +1,47 @@
 "use client";
 
+import { getDictionary } from "@/locales/dictionaries";
 import { useParams } from "next/navigation";
 import { HelpSearch } from "@/components/help/HelpSearch";
 import { HelpTopics } from "@/components/help/HelpTopics";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { getCategoryBySlug } from "@/lib/help-data";
-
-export default function HelpCategoryPage() {
+export default async function HelpCategoryPage() {
 	const params = useParams();
+	const lang = params?.lang as string;
+	const dict = await getDictionary(lang);
 	const slug = params?.category as string;
 	const category = getCategoryBySlug(slug);
-
 	const title = category?.label ?? "Topic Not Found";
 	const description =
 		category?.description ?? "The requested help topic could not be found.";
-
 	return (
 		<section>
 			<main className="flex-grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 				{/* Mobile Sidebar Trigger */}
 				<div className="w-full max-w-7xl flex items-center justify-start mb-6 lg:hidden">
 					<SidebarTrigger />
-					<span className="ml-2 font-semibold text-sm">Menu</span>
+					<span className="ml-2 font-semibold text-sm">
+						{dict.HelpCategoryPage.text_1}
+					</span>
 				</div>
 
 				{/* Header */}
 				<div className="w-full max-w-[800px] flex flex-col items-center text-center mb-12">
 					<nav className="flex items-center gap-2 text-sm font-medium mb-6 text-muted-foreground">
 						<Link href="/" className="hover:text-primary transition-colors">
-							Home
+							{dict.HelpCategoryPage.text_2}
 						</Link>
-						<span className="material-icons text-sm">chevron_right</span>
+						<span className="material-icons text-sm">
+							{dict.HelpCategoryPage.text_3}
+						</span>
 						<Link href="/help" className="hover:text-primary transition-colors">
-							Help Center
+							{dict.HelpCategoryPage.text_4}
 						</Link>
-						<span className="material-icons text-sm">chevron_right</span>
+						<span className="material-icons text-sm">
+							{dict.HelpCategoryPage.text_5}
+						</span>
 						<span className="text-foreground">{title}</span>
 					</nav>
 
@@ -50,12 +56,12 @@ export default function HelpCategoryPage() {
 					</h1>
 					<p className="text-xl text-muted-foreground mb-8">{description}</p>
 
-					<HelpSearch />
+					<HelpSearch dict={dict} />
 				</div>
 
 				{/* Articles */}
 				<div className="w-full max-w-4xl">
-					<HelpTopics category={slug} />
+					<HelpTopics category={slug} dict={dict} />
 				</div>
 			</main>
 

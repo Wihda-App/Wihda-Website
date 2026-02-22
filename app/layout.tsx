@@ -6,24 +6,23 @@ import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "sonner";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeProvider } from "@/components/theme-provider";
-
 const fredoka = Fredoka({
 	subsets: ["latin"],
 	variable: "--font-sans",
 	display: "swap",
 	preload: true,
 });
-
 export const metadata: Metadata = {
 	title: "Wihda – Community Impact, Neighborhood by Neighborhood",
 	description:
 		"Connect with your community. Share food, organize cleanups, and drive local change. Wihda is the app for neighbors who care.",
 };
-
 export default function RootLayout({
 	children,
+	dict,
 }: {
 	children: React.ReactNode;
+	dict: any;
 }) {
 	return (
 		<html lang="en" className={`${fredoka.variable} antialiased scroll-smooth`}>
@@ -54,7 +53,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<QueryProvider>
+					<QueryProvider dict={dict}>
 						{children}
 						<Toaster richColors position="bottom-right" />
 					</QueryProvider>

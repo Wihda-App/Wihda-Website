@@ -4,7 +4,6 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -12,10 +11,14 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle({
+	className,
+	dict,
+}: {
+	className?: string;
+	dict: any;
+}) {
 	const { setTheme } = useTheme();
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -26,18 +29,18 @@ export function ModeToggle({ className }: { className?: string }) {
 				>
 					<Sun className="h-8 w-8 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
 					<Moon className="absolute h-8 w-8 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-					<span className="sr-only">Toggle theme</span>
+					<span className="sr-only">{dict.ModeToggle.text_1}</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuItem onClick={() => setTheme("light")}>
-					Light
+					{dict.ModeToggle.text_2}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("dark")}>
-					Dark
+					{dict.ModeToggle.text_3}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("system")}>
-					System
+					{dict.ModeToggle.text_4}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

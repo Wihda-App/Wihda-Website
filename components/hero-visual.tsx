@@ -5,8 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Users, Leaf, Trophy, MapPin, Calendar, Star } from "lucide-react";
-
-export const HeroVisual = () => {
+export const HeroVisual = ({ dict }: { dict: any }) => {
 	return (
 		<div className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center perspective-1000 my-8 md:my-0 scale-90 sm:scale-100">
 			{/* Background Glow */}
@@ -23,7 +22,9 @@ export const HeroVisual = () => {
 				<div className="w-full h-full bg-background relative overflow-hidden flex flex-col">
 					{/* Status Bar */}
 					<div className="w-full h-8 md:h-12 flex justify-between items-center px-4 md:px-6 pt-2">
-						<span className="text-[9px] md:text-[10px] font-bold">9:41</span>
+						<span className="text-[9px] md:text-[10px] font-bold">
+							{dict.HeroVisual.text_1}
+						</span>
 						<div className="flex gap-1">
 							<div className="w-2 md:w-3 h-2 md:h-3 bg-foreground rounded-full opacity-20"></div>
 							<div className="w-2 md:w-3 h-2 md:h-3 bg-foreground rounded-full opacity-20"></div>
@@ -89,32 +90,32 @@ export const HeroVisual = () => {
 					<div className="relative">
 						<Avatar className="h-10 w-10 md:h-12 md:w-12 border-2 border-primary/10">
 							<AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100" />
-							<AvatarFallback>AB</AvatarFallback>
+							<AvatarFallback>{dict.HeroVisual.text_2}</AvatarFallback>
 						</Avatar>
 						<div className="absolute -bottom-1 -right-1 bg-green-500 border-2 border-background w-4 h-4 rounded-full"></div>
 					</div>
 					<div className="flex-1 min-w-0">
 						<div className="flex justify-between items-start">
 							<p className="text-xs md:text-sm font-bold leading-none mb-1 truncate">
-								Amira B.
+								{dict.HeroVisual.text_3}
 							</p>
 							<Badge
 								variant="outline"
 								className="text-[9px] h-4 px-1 border-primary/20 text-primary"
 							>
-								New
+								{dict.HeroVisual.text_4}
 							</Badge>
 						</div>
 						<p className="text-[10px] md:text-xs text-muted-foreground truncate">
-							Joined{" "}
+							{dict.HeroVisual.text_5}{" "}
 							<span className="text-foreground font-medium">
-								Algiers Community
+								{dict.HeroVisual.text_6}
 							</span>
 						</p>
 						<div className="flex items-center gap-1 mt-1">
 							<MapPin className="w-3 h-3 text-muted-foreground" />
 							<span className="text-[9px] text-muted-foreground">
-								Hydra, Algiers
+								{dict.HeroVisual.text_7}
 							</span>
 						</div>
 					</div>
@@ -130,14 +131,14 @@ export const HeroVisual = () => {
 							className="text-[9px] md:text-[10px] h-5 px-1.5 bg-secondary/10 text-secondary hover:bg-secondary/20 border border-secondary/20"
 						>
 							<Calendar className="w-3 h-3 mr-1" />
-							Event
+							{dict.HeroVisual.text_8}
 						</Badge>
 						<span className="text-[9px] md:text-[10px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full">
-							2h ago
+							{dict.HeroVisual.text_9}
 						</span>
 					</div>
 					<h4 className="text-xs md:text-sm font-bold mb-1 line-clamp-1">
-						Beach Cleanup Drive
+						{dict.HeroVisual.text_10}
 					</h4>
 					<div className="flex items-center justify-between mt-2">
 						<div className="flex items-center gap-1.5">
@@ -159,7 +160,7 @@ export const HeroVisual = () => {
 								</Avatar>
 							</div>
 							<span className="text-[9px] md:text-[10px] text-muted-foreground font-medium">
-								+12 going
+								{dict.HeroVisual.text_11}
 							</span>
 						</div>
 						<div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center">
@@ -182,18 +183,20 @@ export const HeroVisual = () => {
 					</div>
 					<div>
 						<p className="text-xs md:text-sm font-bold text-yellow-600 mb-0.5">
-							Reward Unlocked!
+							{dict.HeroVisual.text_12}
 						</p>
 						<p className="text-[10px] md:text-xs text-foreground/80 leading-tight">
-							You earned{" "}
-							<span className="font-bold text-yellow-600">50 points</span> for
-							verifying a report.
+							{dict.HeroVisual.text_13}{" "}
+							<span className="font-bold text-yellow-600">
+								{dict.HeroVisual.text_14}
+							</span>
+							{dict.HeroVisual.text_15}
 						</p>
 						<div className="w-full bg-muted h-1 mt-2 rounded-full overflow-hidden">
 							<div className="bg-yellow-500 h-full w-3/4 rounded-full"></div>
 						</div>
 						<p className="text-[9px] text-muted-foreground mt-1 text-right">
-							75% to next level
+							{dict.HeroVisual.text_16}
 						</p>
 					</div>
 				</CardContent>

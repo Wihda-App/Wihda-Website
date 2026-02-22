@@ -28,12 +28,10 @@ import {
 import { Button } from "@/components/ui/button";
 import Logo from "./logo";
 import { ModeToggle } from "./theme-button";
-
-export function SiteHeader() {
+export function SiteHeader({ dict }: { dict: any }) {
 	const pathname = usePathname();
 	const relativePaths = ["/help", "/legal"];
 	const isRelative = relativePaths.some((path) => pathname.startsWith(path));
-
 	return (
 		<header
 			className={cn(
@@ -50,7 +48,7 @@ export function SiteHeader() {
 					<Link href="/" className="flex items-center gap-2 group">
 						<Logo className="h-10 w-10 md:h-12 md:w-12 xl:h-20 xl:w-20" />
 						<span className="font-sans font-extrabold text-xl md:text-2xl xl:text-4xl text-foreground">
-							Wihda
+							{dict.SiteHeader.text_1}
 						</span>
 					</Link>
 
@@ -65,7 +63,7 @@ export function SiteHeader() {
 										pathname === "/about" && "text-primary",
 									)}
 								>
-									About
+									{dict.SiteHeader.text_2}
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 
@@ -78,7 +76,7 @@ export function SiteHeader() {
 										pathname === "/blog" && "text-primary",
 									)}
 								>
-									Blog
+									{dict.SiteHeader.text_3}
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 
@@ -91,7 +89,7 @@ export function SiteHeader() {
 										pathname === "/help" && "text-primary",
 									)}
 								>
-									Help Center
+									{dict.SiteHeader.text_4}
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 						</NavigationMenuList>
@@ -100,7 +98,10 @@ export function SiteHeader() {
 
 				{/* Desktop Actions */}
 				<div className="hidden lg:flex items-center gap-2 xl:gap-4">
-					<ModeToggle className="h-9 w-9 md:h-11 md:w-11 [&_svg]:h-5 [&_svg]:w-5" />
+					<ModeToggle
+						dict={dict}
+						className="h-9 w-9 md:h-11 md:w-11 [&_svg]:h-5 [&_svg]:w-5"
+					/>
 					<Button
 						asChild
 						size="lg"
@@ -108,14 +109,14 @@ export function SiteHeader() {
 					>
 						<Link href="/download">
 							<Download className="mr-2 h-4 w-4 xl:h-5 xl:w-5" />
-							Download App
+							{dict.SiteHeader.text_5}
 						</Link>
 					</Button>
 				</div>
 
 				{/* Mobile Navigation */}
 				<div className="lg:hidden flex items-center gap-1">
-					<ModeToggle className="h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" />
+					<ModeToggle dict={dict} className="h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" />
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button
@@ -124,7 +125,7 @@ export function SiteHeader() {
 								className="-mr-2 hover:bg-accent/50"
 							>
 								<Menu className="h-6 w-6" />
-								<span className="sr-only">Toggle menu</span>
+								<span className="sr-only">{dict.SiteHeader.text_6}</span>
 							</Button>
 						</SheetTrigger>
 						<SheetContent
@@ -135,7 +136,7 @@ export function SiteHeader() {
 								<div className="flex items-center gap-3">
 									<Logo className="h-16 w-16" />
 									<SheetTitle className="font-sans font-bold text-3xl tracking-tight">
-										Wihda
+										{dict.SiteHeader.text_7}
 									</SheetTitle>
 								</div>
 							</SheetHeader>
@@ -150,7 +151,7 @@ export function SiteHeader() {
 										)}
 									>
 										<Home className="h-5 w-5" />
-										<span>Platform</span>
+										<span>{dict.SiteHeader.text_8}</span>
 									</Link>
 									<Link
 										href="/about"
@@ -160,7 +161,7 @@ export function SiteHeader() {
 										)}
 									>
 										<Info className="h-5 w-5" />
-										<span>About</span>
+										<span>{dict.SiteHeader.text_9}</span>
 									</Link>
 									<Link
 										href="/blog"
@@ -170,7 +171,7 @@ export function SiteHeader() {
 										)}
 									>
 										<Newspaper className="h-5 w-5" />
-										<span>Blog</span>
+										<span>{dict.SiteHeader.text_10}</span>
 									</Link>
 									<Link
 										href="/help"
@@ -180,7 +181,7 @@ export function SiteHeader() {
 										)}
 									>
 										<HelpCircle className="h-5 w-5" />
-										<span>Help Center</span>
+										<span>{dict.SiteHeader.text_11}</span>
 									</Link>
 								</div>
 							</div>
@@ -193,7 +194,7 @@ export function SiteHeader() {
 								>
 									<Link href="/download">
 										<Download className="mr-2 h-6 w-6" />
-										Download App
+										{dict.SiteHeader.text_12}
 									</Link>
 								</Button>
 							</div>

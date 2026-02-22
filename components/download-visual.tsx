@@ -6,9 +6,11 @@ import { Scale } from "lucide-react";
 
 // A custom hook to measure element dimensions dynamically
 const useImageDimensions = () => {
-	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+	const [dimensions, setDimensions] = useState({
+		width: 0,
+		height: 0,
+	});
 	const imgRef = useRef<HTMLImageElement>(null);
-
 	useLayoutEffect(() => {
 		if (!imgRef.current) return;
 
@@ -16,32 +18,37 @@ const useImageDimensions = () => {
 		const handleResize = () => {
 			if (imgRef.current) {
 				const { offsetWidth, offsetHeight } = imgRef.current;
-				setDimensions({ width: offsetWidth, height: offsetHeight });
+				setDimensions({
+					width: offsetWidth,
+					height: offsetHeight,
+				});
 			}
 		};
 
 		// Use ResizeObserver for continuous tracking
 		const resizeObserver = new ResizeObserver(handleResize);
 		resizeObserver.observe(imgRef.current);
-
 		handleResize();
-
 		return () => {
 			resizeObserver.disconnect();
 		};
 	}, []);
-
 	const handleImageLoad = () => {
 		if (imgRef.current) {
 			const { offsetWidth, offsetHeight } = imgRef.current;
-			setDimensions({ width: offsetWidth, height: offsetHeight });
+			setDimensions({
+				width: offsetWidth,
+				height: offsetHeight,
+			});
 		}
 	};
-
-	return { imgRef, dimensions, handleImageLoad };
+	return {
+		imgRef,
+		dimensions,
+		handleImageLoad,
+	};
 };
-
-export const DownloadVisual = () => {
+export const DownloadVisual = ({ dict }: { dict: any }) => {
 	// Toggle for Green Screen vs Interactive Simulator
 	const [isActive, setIsActive] = useState(false);
 	const { imgRef, dimensions, handleImageLoad } = useImageDimensions();
@@ -80,13 +87,11 @@ export const DownloadVisual = () => {
 			return () => clearTimeout(timer);
 		}
 	}, [step]);
-
 	const formatTime = (seconds: number) => {
 		const mins = Math.floor(seconds / 60);
 		const secs = seconds % 60;
 		return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 	};
-
 	const handleStart = () => {
 		setIsProcessing(true);
 		setTimeout(() => {
@@ -94,7 +99,6 @@ export const DownloadVisual = () => {
 			setStep(1);
 		}, 800);
 	};
-
 	const handleTakePhoto = (nextStep: number) => {
 		setIsProcessing(true);
 		setTimeout(() => {
@@ -102,7 +106,6 @@ export const DownloadVisual = () => {
 			setStep(nextStep);
 		}, 1500);
 	};
-
 	return (
 		<div className="relative w-full h-150 flex items-center justify-center perspective-1000">
 			{/* Hand Holding Phone Container */}
@@ -110,7 +113,9 @@ export const DownloadVisual = () => {
 				{/* 1. WRAPPER CONTAINER: Controls unified scaling and masking */}
 				<div
 					className={`relative w-full aspect-square drop-shadow-2xl mask-[linear-gradient(to_bottom,transparent_10%,black_50%,black_85%,transparent_100%)] ${isActive ? "z-20" : "z-10"}`}
-					style={{ scale: "140%" }}
+					style={{
+						scale: "140%",
+					}}
 				>
 					{/* THE PHONE MOCKUP (Image) */}
 					<img
@@ -158,10 +163,10 @@ export const DownloadVisual = () => {
 									<div className="bg-white border border-secondary rounded-full p-1 flex relative w-40 h-6 shadow-sm">
 										<div className="absolute right-0.5 top-0.5 bottom-0.5 w-1/2 bg-secondary rounded-full transition-all duration-300 shadow-sm"></div>
 										<div className="flex-1 flex justify-center items-center z-10 text-secondary font-bold text-[8px]">
-											My neighbor
+											{dict.TARGET_HEIGHT.text_1}
 										</div>
 										<div className="flex-1 flex justify-center items-center z-10 text-white font-bold text-[8px]">
-											My neighborhood
+											{dict.TARGET_HEIGHT.text_2}
 										</div>
 									</div>
 									<svg
@@ -179,7 +184,7 @@ export const DownloadVisual = () => {
 									</svg>
 								</div>
 								<h1 className="text-lg font-bold text-foreground mb-0">
-									Good morning, Amdjed
+									{dict.TARGET_HEIGHT.text_3}
 								</h1>
 								<div className="flex items-center text-muted-foreground text-xs font-medium">
 									<svg
@@ -201,7 +206,7 @@ export const DownloadVisual = () => {
 											d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 										/>
 									</svg>
-									Hadjam Moukhtar Neighborhood
+									{dict.TARGET_HEIGHT.text_4}
 								</div>
 							</div>
 
@@ -243,10 +248,10 @@ export const DownloadVisual = () => {
 								</div>
 								<div className="flex border-b border-border pb-0.5">
 									<div className="flex-1 text-center pb-1 border-b-2 border-secondary text-secondary font-bold text-sm">
-										Activities
+										{dict.TARGET_HEIGHT.text_5}
 									</div>
 									<div className="flex-1 text-center pb-1 border-b-2 border-transparent text-muted-foreground font-medium text-sm">
-										News
+										{dict.TARGET_HEIGHT.text_6}
 									</div>
 								</div>
 							</div>
@@ -262,12 +267,12 @@ export const DownloadVisual = () => {
 											</div>
 											<div>
 												<h2 className="text-base font-bold text-foreground">
-													Cleanify Session
+													{dict.TARGET_HEIGHT.text_7}
 												</h2>
 												<p className="text-xs text-muted-foreground mt-1">
-													Help keep Hadjam Moukhtar clean.
+													{dict.TARGET_HEIGHT.text_8}
 													<br />
-													Take before & after photos to earn rewards.
+													{dict.TARGET_HEIGHT.text_9}
 												</p>
 											</div>
 											<div className="bg-primary/10 rounded-lg p-3 text-left border border-primary/20">
@@ -289,12 +294,12 @@ export const DownloadVisual = () => {
 													</div>
 													<div>
 														<h4 className="text-[8px] font-bold text-primary uppercase tracking-wide">
-															Rules
+															{dict.TARGET_HEIGHT.text_10}
 														</h4>
 														<ul className="text-[8px] text-foreground mt-0.5 space-y-0.5 list-disc list-inside">
-															<li>Min. 20 min cleaning</li>
-															<li>Geo-fenced area</li>
-															<li>+150 Coins on approval</li>
+															<li>{dict.TARGET_HEIGHT.text_11}</li>
+															<li>{dict.TARGET_HEIGHT.text_12}</li>
+															<li>{dict.TARGET_HEIGHT.text_13}</li>
 														</ul>
 													</div>
 												</div>
@@ -346,7 +351,7 @@ export const DownloadVisual = () => {
 																d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 															/>
 														</svg>
-														Start
+														{dict.TARGET_HEIGHT.text_14}
 													</>
 												)}
 											</button>
@@ -380,15 +385,15 @@ export const DownloadVisual = () => {
 													/>
 												</svg>
 												<span className="text-xs font-bold text-muted-foreground">
-													Point at trash
+													{dict.TARGET_HEIGHT.text_15}
 												</span>
 											</div>
 											<div>
 												<h3 className="text-base font-bold text-foreground">
-													Step 1: Before
+													{dict.TARGET_HEIGHT.text_16}
 												</h3>
 												<p className="text-[8px] text-muted-foreground mt-0.5">
-													Capture area before cleaning.
+													{dict.TARGET_HEIGHT.text_17}
 												</p>
 											</div>
 											<button
@@ -420,23 +425,23 @@ export const DownloadVisual = () => {
 													</span>
 												</div>
 												<h3 className="text-base font-bold text-foreground">
-													Cleaning
+													{dict.TARGET_HEIGHT.text_18}
 												</h3>
 												<p className="text-[8px] text-muted-foreground mt-0.5 font-medium bg-secondary/10 inline-block px-1.5 py-0.5 rounded-md">
-													20 min min.
+													{dict.TARGET_HEIGHT.text_19}
 												</p>
 												<div className="mt-4 space-y-2">
 													<div className="flex items-center justify-between text-[8px] text-muted-foreground bg-muted p-2 rounded-lg">
-														<span>Status</span>
+														<span>{dict.TARGET_HEIGHT.text_20}</span>
 														<span className="text-secondary font-bold flex items-center gap-1">
 															<span className="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>{" "}
-															Active
+															{dict.TARGET_HEIGHT.text_21}
 														</span>
 													</div>
 													<div className="flex items-center justify-between text-[8px] text-muted-foreground bg-muted p-2 rounded-lg">
-														<span>Location</span>
+														<span>{dict.TARGET_HEIGHT.text_22}</span>
 														<span className="text-foreground font-bold">
-															Verified
+															{dict.TARGET_HEIGHT.text_23}
 														</span>
 													</div>
 												</div>
@@ -459,7 +464,7 @@ export const DownloadVisual = () => {
 															d="M13 5l7 7-7 7M5 5l7 7-7 7"
 														/>
 													</svg>
-													Skip Demo Timer
+													{dict.TARGET_HEIGHT.text_24}
 												</button>
 												{/* ----------------------- */}
 											</div>
@@ -493,15 +498,15 @@ export const DownloadVisual = () => {
 													/>
 												</svg>
 												<span className="text-xs font-bold text-secondary">
-													Point at clean area
+													{dict.TARGET_HEIGHT.text_25}
 												</span>
 											</div>
 											<div>
 												<h3 className="text-base font-bold text-foreground">
-													Step 2: After
+													{dict.TARGET_HEIGHT.text_26}
 												</h3>
 												<p className="text-[8px] text-muted-foreground mt-0.5">
-													Show clean result to claim.
+													{dict.TARGET_HEIGHT.text_27}
 												</p>
 											</div>
 											<button
@@ -542,10 +547,10 @@ export const DownloadVisual = () => {
 											</div>
 											<div>
 												<h3 className="text-base font-bold text-foreground">
-													AI Verifying
+													{dict.TARGET_HEIGHT.text_28}
 												</h3>
 												<p className="text-[8px] text-muted-foreground mt-1">
-													Comparing your photos...
+													{dict.TARGET_HEIGHT.text_29}
 												</p>
 											</div>
 										</div>
@@ -574,10 +579,10 @@ export const DownloadVisual = () => {
 											</div>
 											<div>
 												<h2 className="text-lg font-bold text-foreground">
-													Verified!
+													{dict.TARGET_HEIGHT.text_30}
 												</h2>
 												<p className="text-xs text-muted-foreground mt-1">
-													Great job keeping the neighborhood clean.
+													{dict.TARGET_HEIGHT.text_31}
 												</p>
 											</div>
 											<div className="bg-primary/10 rounded-xl p-3 border border-primary/20 flex items-center justify-between">
@@ -587,15 +592,15 @@ export const DownloadVisual = () => {
 													</div>
 													<div className="text-left">
 														<div className="text-[8px] text-muted-foreground font-bold uppercase">
-															Reward
+															{dict.TARGET_HEIGHT.text_32}
 														</div>
 														<div className="text-base font-bold text-foreground">
-															+150 Coins
+															{dict.TARGET_HEIGHT.text_33}
 														</div>
 													</div>
 												</div>
 												<div className="text-primary font-bold text-[8px] bg-white px-1.5 py-0.5 rounded-md shadow-sm">
-													APPROVED
+													{dict.TARGET_HEIGHT.text_34}
 												</div>
 											</div>
 											<button
@@ -605,7 +610,7 @@ export const DownloadVisual = () => {
 												}}
 												className="w-full bg-foreground text-white font-bold py-2 rounded-xl mt-1"
 											>
-												Done
+												{dict.TARGET_HEIGHT.text_35}
 											</button>
 										</div>
 									</div>
@@ -626,31 +631,32 @@ export const DownloadVisual = () => {
 						<div className="flex items-center gap-3">
 							<div className="w-10 h-10 rounded-2xl bg-linear-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20 shrink-0 group-hover:rotate-12 transition-transform">
 								<span className="material-icons text-white text-xl">
-									play_circle
+									{dict.TARGET_HEIGHT.text_36}
 								</span>
 							</div>
 							<div className="flex-1 min-w-0">
 								<h4 className="font-extrabold text-sm text-foreground tracking-tight">
-									Try Cleanify Live
+									{dict.TARGET_HEIGHT.text_37}
 								</h4>
 								<span className="text-[8px] text-primary font-bold uppercase tracking-widest">
-									Interactive Beta
+									{dict.TARGET_HEIGHT.text_38}
 								</span>
 							</div>
 						</div>
 
 						<p className="text-xs text-muted-foreground leading-relaxed font-medium">
-							Tap here to launch the interactive simulator and see how Wihda
-							empowers civic impact!
+							{dict.TARGET_HEIGHT.text_39}
 						</p>
 
 						<div className="flex items-center justify-between pt-2 border-t border-border/50">
 							<span className="text-[8px] text-muted-foreground font-bold italic">
-								Powered by Wihda
+								{dict.TARGET_HEIGHT.text_40}
 							</span>
 							<div className="flex items-center gap-1 text-primary text-[8px] font-black group-hover:gap-2 transition-all">
-								LAUNCH{" "}
-								<span className="material-icons text-xs">arrow_forward</span>
+								{dict.TARGET_HEIGHT.text_41}{" "}
+								<span className="material-icons text-xs">
+									{dict.TARGET_HEIGHT.text_42}
+								</span>
 							</div>
 						</div>
 					</div>

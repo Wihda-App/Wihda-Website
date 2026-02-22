@@ -1,13 +1,9 @@
 "use client";
 
+import { getDictionary } from "@/locales/dictionaries";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { HelpSidebar } from "@/components/help/HelpSidebar";
-import {
-	SidebarProvider,
-	SidebarInset,
-	SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,34 +13,32 @@ import {
 	getArticlesByCategory,
 	type HelpArticle,
 } from "@/lib/help-data";
-
-export default function HelpArticlePage() {
+export default async function HelpArticlePage() {
 	const params = useParams();
+	const lang = params?.lang as string;
+	const dict = await getDictionary(lang);
 	const slug = params?.slug as string;
 	const article = getArticleBySlug(slug);
-
 	if (!article) {
 		return (
 			<main className="flex-grow flex flex-col items-center justify-center w-full px-4">
 				<div className="text-center">
 					<span className="material-icons text-6xl text-muted-foreground/30 mb-4">
-						search_off
+						{dict.HelpArticlePage.text_1}
 					</span>
 					<h1 className="text-2xl font-bold text-foreground mb-2">
-						Article Not Found
+						{dict.HelpArticlePage.text_2}
 					</h1>
 					<p className="text-muted-foreground mb-6">
-						The article you&apos;re looking for doesn&apos;t exist or has been
-						moved.
+						{dict.HelpArticlePage.text_3}
 					</p>
 					<Button asChild>
-						<Link href="/help">Back to Help Center</Link>
+						<Link href="/help">{dict.HelpArticlePage.text_4}</Link>
 					</Button>
 				</div>
 			</main>
 		);
 	}
-
 	const category = getCategoryBySlug(article.category);
 	const relatedArticles = getArticlesByCategory(article.category).filter(
 		(a) => a.slug !== article.slug,
@@ -52,27 +46,32 @@ export default function HelpArticlePage() {
 
 	// Split body into paragraphs (double newline separated)
 	const paragraphs = article.body.split("\n\n");
-
 	return (
 		<section>
 			<main className="flex-grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 				{/* Mobile Sidebar Trigger */}
 				<div className="w-full max-w-4xl flex items-center justify-start mb-6 lg:hidden">
 					<SidebarTrigger />
-					<span className="ml-2 font-semibold text-sm">Menu</span>
+					<span className="ml-2 font-semibold text-sm">
+						{dict.HelpArticlePage.text_5}
+					</span>
 				</div>
 
 				{/* Breadcrumbs */}
 				<div className="w-full max-w-4xl mb-8">
 					<nav className="flex items-center gap-2 text-sm font-medium text-muted-foreground flex-wrap">
 						<Link href="/" className="hover:text-primary transition-colors">
-							Home
+							{dict.HelpArticlePage.text_6}
 						</Link>
-						<span className="material-icons text-sm">chevron_right</span>
+						<span className="material-icons text-sm">
+							{dict.HelpArticlePage.text_7}
+						</span>
 						<Link href="/help" className="hover:text-primary transition-colors">
-							Help Center
+							{dict.HelpArticlePage.text_8}
 						</Link>
-						<span className="material-icons text-sm">chevron_right</span>
+						<span className="material-icons text-sm">
+							{dict.HelpArticlePage.text_9}
+						</span>
 						{category && (
 							<>
 								<Link
@@ -81,7 +80,9 @@ export default function HelpArticlePage() {
 								>
 									{category.label}
 								</Link>
-								<span className="material-icons text-sm">chevron_right</span>
+								<span className="material-icons text-sm">
+									{dict.HelpArticlePage.text_10}
+								</span>
 							</>
 						)}
 						<span className="text-foreground truncate max-w-[200px]">
@@ -163,16 +164,20 @@ export default function HelpArticlePage() {
 					<Card className="mb-8">
 						<CardContent className="p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
 							<p className="text-sm font-medium text-foreground">
-								Was this article helpful?
+								{dict.HelpArticlePage.text_11}
 							</p>
 							<div className="flex gap-3">
 								<Button variant="outline" size="sm" className="gap-2">
-									<span className="material-icons text-base">thumb_up</span>
-									Yes
+									<span className="material-icons text-base">
+										{dict.HelpArticlePage.text_12}
+									</span>
+									{dict.HelpArticlePage.text_13}
 								</Button>
 								<Button variant="outline" size="sm" className="gap-2">
-									<span className="material-icons text-base">thumb_down</span>
-									No
+									<span className="material-icons text-base">
+										{dict.HelpArticlePage.text_14}
+									</span>
+									{dict.HelpArticlePage.text_15}
 								</Button>
 							</div>
 						</CardContent>
@@ -182,7 +187,7 @@ export default function HelpArticlePage() {
 					{relatedArticles.length > 0 && (
 						<div className="mb-8">
 							<h3 className="text-lg font-bold text-foreground mb-4">
-								Related Articles
+								{dict.HelpArticlePage.text_16}
 							</h3>
 							<div className="space-y-3">
 								{relatedArticles.map((related: HelpArticle) => (
@@ -202,7 +207,7 @@ export default function HelpArticlePage() {
 													</p>
 												</div>
 												<span className="material-icons text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0">
-													arrow_forward
+													{dict.HelpArticlePage.text_17}
 												</span>
 											</CardContent>
 										</Card>
