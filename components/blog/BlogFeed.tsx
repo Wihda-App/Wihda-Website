@@ -10,16 +10,17 @@ interface BlogFeedProps {
 	initialPosts: BlogPost[];
 	dict: any;
 }
-const CATEGORIES = [
-	"All",
-	"Impact",
-	"Community",
-	"Tech",
-	"Policy",
-	"Leadership",
-	"Story",
-	"Update",
-];
+const getCategories = (dict: any) =>
+	dict.BlogFeedCategories || [
+		"All",
+		"Impact",
+		"Community",
+		"Tech",
+		"Policy",
+		"Leadership",
+		"Story",
+		"Update",
+	];
 export function BlogFeed({ initialPosts, dict }: BlogFeedProps) {
 	const [selectedCategory, setSelectedCategory] = useState("All");
 	const [searchQuery, setSearchQuery] = useState("");
@@ -50,10 +51,11 @@ export function BlogFeed({ initialPosts, dict }: BlogFeedProps) {
 							{dict.BlogFeed.text_1}
 						</span>
 						<h1 className="text-5xl lg:text-7xl font-sans font-medium tracking-tight text-gray-900 dark:text-white mb-6">
-							{dict.BlogFeed.text_2}
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">
+							<span>{dict.BlogFeed.text_2}</span>{" "}
+							{/* This is the natural space */}
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic mx-2">
 								{dict.BlogFeed.text_3}
-							</span>
+							</span>{" "}
 						</h1>
 						<p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
 							{dict.BlogFeed.text_4}
@@ -63,15 +65,17 @@ export function BlogFeed({ initialPosts, dict }: BlogFeedProps) {
 					{/* Filters & Search */}
 					<div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12">
 						<div className="flex flex-wrap justify-center gap-2">
-							{CATEGORIES.map((category) => (
-								<button
-									key={category}
-									onClick={() => setSelectedCategory(category)}
-									className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === category ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-transparent shadow-lg transform -translate-y-0.5" : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-750"}`}
-								>
-									{category}
-								</button>
-							))}
+							{(Object.entries(getCategories(dict)) as any[]).map(
+								([key, value]) => (
+									<button
+										key={key}
+										onClick={() => setSelectedCategory(key)}
+										className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === key ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-transparent shadow-lg transform -translate-y-0.5" : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-750"}`}
+									>
+										{value}
+									</button>
+								),
+							)}
 						</div>
 
 						<div className="relative w-full max-w-xs group">
@@ -81,7 +85,7 @@ export function BlogFeed({ initialPosts, dict }: BlogFeedProps) {
 							<input
 								type="text"
 								className="block w-full pl-10 pr-3 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl leading-5 bg-white dark:bg-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
-								placeholder="Search articles..."
+								placeholder={dict.Input_PlaceHolder.blog_search}
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 							/>

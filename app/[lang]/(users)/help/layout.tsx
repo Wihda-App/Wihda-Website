@@ -1,13 +1,22 @@
 import { HelpSidebar } from "@/components/help/HelpSidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { SiteHeader } from "@/components/site-header";
-export default function HelpLayout({
+import { getDictionary } from "@/locales/dictionaries";
+import { Metadata } from "next/types";
+export const metadata: Metadata = {
+	title: "Wihda Help Center",
+	description: "Find answers, browse topics, and get support for Wihda.",
+};
+export default async function HelpLayout({
 	children,
-	dict,
-}: {
+	params,
+}: Readonly<{
 	children: React.ReactNode;
-	dict: any;
-}) {
+	params: Promise<{ lang: string }>;
+}>) {
+	// 3. Await the params!
+	const { lang } = await params;
+	const dict = await getDictionary(lang);
 	return (
 		<SidebarProvider defaultOpen={true}>
 			<HelpSidebar dict={dict} />

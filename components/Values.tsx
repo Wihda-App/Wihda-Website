@@ -12,28 +12,26 @@ interface ValueItem {
 	iconColorClass?: string;
 	className?: string;
 }
+
 const getValues = (dict: any): ValueItem[] => [
 	{
 		icon: <span className="material-icons">{dict.VALUES.text_1}</span>,
-		title: "Transparency",
-		description:
-			"Open data and clear processes build the trust necessary for civic engagement.",
+		title: dict.ValueCards.text_1,
+		description: dict.ValueCards.text_2,
 		bgClass: "bg-[#eef8fe] dark:bg-primary/10",
 		iconBgClass: "bg-primary text-white",
 	},
 	{
 		icon: <span className="material-icons">{dict.VALUES.text_2}</span>,
-		title: "Inclusivity",
-		description:
-			"Every voice matters. We design for accessibility across all demographics.",
+		title: dict.ValueCards.text_3,
+		description: dict.ValueCards.text_4,
 		bgClass: "bg-[#f2f9e7] dark:bg-secondary/10",
 		iconBgClass: "bg-secondary text-white",
 	},
 	{
 		icon: <span className="material-icons">{dict.VALUES.text_3}</span>,
-		title: "Action",
-		description:
-			"We move beyond discussion to tangible, measurable real-world outcomes.",
+		title: dict.ValueCards.text_5,
+		description: dict.ValueCards.text_6,
 		bgClass: "bg-gray-50 dark:bg-gray-800",
 		iconBgClass: "bg-gray-900 dark:bg-white",
 		iconColorClass: "text-white dark:text-gray-900",
@@ -41,14 +39,14 @@ const getValues = (dict: any): ValueItem[] => [
 	},
 	{
 		icon: <span className="material-icons">{dict.VALUES.text_4}</span>,
-		title: "Hope",
-		description:
-			"Optimism fuels our work. We believe a better future is buildable.",
+		title: dict.ValueCards.text_7,
+		description: dict.ValueCards.text_8,
 		bgClass: "bg-[#fff4e5] dark:bg-orange-900/20",
 		iconBgClass: "bg-orange-400 text-white",
 		className: "sm:mt-8",
 	},
 ];
+
 export const Values = ({ dict }: { dict: any }) => {
 	const VALUES = getValues(dict);
 
@@ -70,7 +68,8 @@ export const Values = ({ dict }: { dict: any }) => {
 							className="inline-flex items-center text-primary font-bold hover:text-primary-dark text-lg group"
 						>
 							{dict.Values.text_4}
-							<span className="material-icons ml-2 group-hover:translate-x-1 transition-transform">
+							{/* Changed ml-2 to ms-2 for RTL Arabic support */}
+							<span className="material-icons ms-2 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">
 								{dict.Values.text_5}
 							</span>
 						</a>

@@ -1,24 +1,29 @@
-"use client";
-
 import { getDictionary } from "@/locales/dictionaries";
-import { useParams } from "next/navigation";
 import { HelpSearch } from "@/components/help/HelpSearch";
 import { HelpTopics } from "@/components/help/HelpTopics";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { getCategoryBySlug } from "@/lib/help-data";
-export default async function HelpCategoryPage() {
-	const params = useParams();
-	const lang = params?.lang as string;
+
+export default async function HelpCategoryPage({
+	params,
+}: {
+	params: Promise<{
+		lang: string;
+		category: string;
+	}>;
+}) {
+	const { lang, category } = await params;
 	const dict = await getDictionary(lang);
-	const slug = params?.category as string;
-	const category = getCategoryBySlug(slug);
-	const title = category?.label ?? "Topic Not Found";
+	const slug = category as string;
+	const categoryContent = getCategoryBySlug(slug);
+	const title = categoryContent?.label ?? "Topic Not Found";
 	const description =
-		category?.description ?? "The requested help topic could not be found.";
+		categoryContent?.description ??
+		"The requested help topic could not be found.";
 	return (
 		<section>
-			<main className="flex-grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
+			<main className="grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 				{/* Mobile Sidebar Trigger */}
 				<div className="w-full max-w-7xl flex items-center justify-start mb-6 lg:hidden">
 					<SidebarTrigger />
@@ -28,7 +33,7 @@ export default async function HelpCategoryPage() {
 				</div>
 
 				{/* Header */}
-				<div className="w-full max-w-[800px] flex flex-col items-center text-center mb-12">
+				<div className="w-full max-w-200 flex flex-col items-center text-center mb-12">
 					<nav className="flex items-center gap-2 text-sm font-medium mb-6 text-muted-foreground">
 						<Link href="/" className="hover:text-primary transition-colors">
 							{dict.HelpCategoryPage.text_2}
@@ -47,7 +52,7 @@ export default async function HelpCategoryPage() {
 
 					<div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
 						<span className="material-icons text-3xl text-primary">
-							{category?.icon ?? "help_outline"}
+							{categoryContent?.icon ?? "help_outline"}
 						</span>
 					</div>
 
@@ -67,11 +72,11 @@ export default async function HelpCategoryPage() {
 
 			{/* Background blobs */}
 			<div
-				className="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"
+				className="fixed top-0 right-0 -z-10 w-150 h-150 bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"
 				aria-hidden="true"
 			/>
 			<div
-				className="fixed bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/3 translate-y-1/4"
+				className="fixed bottom-0 left-0 -z-10 w-125 h-125 bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/3 translate-y-1/4"
 				aria-hidden="true"
 			/>
 		</section>

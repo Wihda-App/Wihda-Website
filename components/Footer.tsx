@@ -4,28 +4,6 @@ import Logo from "./logo";
 export const Footer = ({ dict }: { dict: any }) => {
 	return (
 		<>
-			{/* Team / Community Photo Banner */}
-			<section className="py-20 bg-background-light dark:bg-background-dark">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl overflow-hidden relative h-80 shadow-2xl">
-					<img
-						alt="Large group of diverse friends laughing together outdoors"
-						className="w-full h-full object-cover"
-						src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEK32zZv6pZkcFEbwUJABgSQRObDRN79nsLJRb2e_p8odqDE3M6-w8ZETjlhJKQcaif-WUEPS8FQayZYBePXfgQIelL70fHGsiqJRJCQPURYrsl1nVevL5TkCO9RO8opcCBRUvJevaWjb923kMg6v-3yJ0be5hCbP7D37dmNH8KyKKQ7oMYvImzBaXCrD1yVG1nCZveLn_alqftChffz74uiy9WS3LgzQ-hXFvTbzsaQsb10XVsH3TBF-8EAZiLrXfGAKFHMdMTEb5"
-					/>
-					<div className="absolute inset-0 bg-primary/30 mix-blend-multiply"></div>
-					<div className="absolute inset-0 flex items-center justify-center">
-						<div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-10 py-8 rounded-2xl text-center max-w-lg mx-4 shadow-xl border border-white/20">
-							<p className="text-sm font-bold uppercase tracking-widest text-primary mb-3">
-								{dict.Footer.text_1}
-							</p>
-							<h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-								{dict.Footer.text_2}
-							</h2>
-						</div>
-					</div>
-				</div>
-			</section>
-
 			{/* Main Footer */}
 			<footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,6 +124,7 @@ export const Footer = ({ dict }: { dict: any }) => {
 									</span>
 									<div className="flex flex-col">
 										<a
+											dir="ltr"
 											target="_blank"
 											href="tel:+966590386935"
 											className="hover:text-primary transition-colors font-semibold text-gray-900 dark:text-white"
@@ -168,6 +147,7 @@ export const Footer = ({ dict }: { dict: any }) => {
 									</div>
 									<div className="flex flex-col">
 										<a
+											dir="ltr"
 											href="https://wa.me/213549599182"
 											target="_blank"
 											className="hover:text-primary transition-colors font-semibold text-gray-900 dark:text-white"

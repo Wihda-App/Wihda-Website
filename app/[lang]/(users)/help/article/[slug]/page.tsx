@@ -1,7 +1,5 @@
-"use client";
-
+"use server";
 import { getDictionary } from "@/locales/dictionaries";
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,15 +11,21 @@ import {
 	getArticlesByCategory,
 	type HelpArticle,
 } from "@/lib/help-data";
-export default async function HelpArticlePage() {
-	const params = useParams();
-	const lang = params?.lang as string;
+
+export default async function HelpCategoryPage({
+	params,
+}: {
+	params: Promise<{
+		lang: string;
+		slug: string;
+	}>;
+}) {
+	const { lang, slug } = await params;
 	const dict = await getDictionary(lang);
-	const slug = params?.slug as string;
 	const article = getArticleBySlug(slug);
 	if (!article) {
 		return (
-			<main className="flex-grow flex flex-col items-center justify-center w-full px-4">
+			<main className="grow flex flex-col items-center justify-center w-full px-4">
 				<div className="text-center">
 					<span className="material-icons text-6xl text-muted-foreground/30 mb-4">
 						{dict.HelpArticlePage.text_1}
@@ -48,7 +52,7 @@ export default async function HelpArticlePage() {
 	const paragraphs = article.body.split("\n\n");
 	return (
 		<section>
-			<main className="flex-grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
+			<main className="grow flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 				{/* Mobile Sidebar Trigger */}
 				<div className="w-full max-w-4xl flex items-center justify-start mb-6 lg:hidden">
 					<SidebarTrigger />
@@ -85,7 +89,7 @@ export default async function HelpArticlePage() {
 								</span>
 							</>
 						)}
-						<span className="text-foreground truncate max-w-[200px]">
+						<span className="text-foreground truncate max-w-50">
 							{article.title}
 						</span>
 					</nav>
@@ -221,11 +225,11 @@ export default async function HelpArticlePage() {
 
 			{/* Background blobs */}
 			<div
-				className="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"
+				className="fixed top-0 right-0 -z-10 w-150 h-150 bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"
 				aria-hidden="true"
 			/>
 			<div
-				className="fixed bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/3 translate-y-1/4"
+				className="fixed bottom-0 left-0 -z-10 w-125 h-125 bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/3 translate-y-1/4"
 				aria-hidden="true"
 			/>
 		</section>

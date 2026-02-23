@@ -1,6 +1,4 @@
 "use client";
-
-import { getDictionary } from "@/locales/dictionaries";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,74 +12,54 @@ import {
 	SidebarMenuItem,
 	SidebarFooter,
 } from "@/components/ui/sidebar";
-const LEGAL_PAGES = [
-	{
-		label: "Privacy Policy",
-		href: "/legal",
-		icon: "shield",
-	},
-	{
-		label: "Terms of Service",
-		href: "/legal/terms",
-		icon: "description",
-	},
-];
-const PRIVACY_TOC = [
-	{
-		label: "1. Introduction",
-		href: "#introduction",
-	},
-	{
-		label: "2. Data We Collect",
-		href: "#data-collection",
-	},
-	{
-		label: "3. How We Use Data",
-		href: "#data-usage",
-	},
-	{
-		label: "4. User Responsibilities",
-		href: "#user-responsibilities",
-	},
-	{
-		label: "5. Security",
-		href: "#security",
-	},
-	{
-		label: "6. Termination",
-		href: "#termination",
-	},
-	{
-		label: "7. Contact Us",
-		href: "#contact",
-	},
-];
-const TERMS_TOC = [
-	{
-		label: "1. Acceptance of Terms",
-		href: "#introduction",
-	},
-	{
-		label: "2. Accounts",
-		href: "#accounts",
-	},
-	{
-		label: "3. Content",
-		href: "#content",
-	},
-	{
-		label: "4. Termination",
-		href: "#termination",
-	},
-];
+// Pages
+export function getLegalPages(dict: any): any[] {
+	return [
+		{ label: dict.LegalSidebar.Pages.text_1, href: "/legal", icon: "shield" },
+		{
+			label: dict.LegalSidebar.Pages.text_2,
+			href: "/legal/terms",
+			icon: "description",
+		},
+	];
+}
+
+// Privacy TOC
+export function getPrivacyTOC(dict: any): any[] {
+	return [
+		{ label: dict.LegalSidebar.PrivacyTOC.text_1, href: "#introduction" },
+		{ label: dict.LegalSidebar.PrivacyTOC.text_2, href: "#data-collection" },
+		{ label: dict.LegalSidebar.PrivacyTOC.text_3, href: "#data-usage" },
+		{
+			label: dict.LegalSidebar.PrivacyTOC.text_4,
+			href: "#user-responsibilities",
+		},
+		{ label: dict.LegalSidebar.PrivacyTOC.text_5, href: "#security" },
+		{ label: dict.LegalSidebar.PrivacyTOC.text_6, href: "#termination" },
+		{ label: dict.LegalSidebar.PrivacyTOC.text_7, href: "#contact" },
+	];
+}
+
+// Terms TOC
+export function getTermsTOC(dict: any): any[] {
+	return [
+		{ label: dict.LegalSidebar.TermsTOC.text_1, href: "#introduction" },
+		{ label: dict.LegalSidebar.TermsTOC.text_2, href: "#accounts" },
+		{ label: dict.LegalSidebar.TermsTOC.text_3, href: "#content" },
+		{ label: dict.LegalSidebar.TermsTOC.text_4, href: "#termination" },
+	];
+}
 export function LegalSidebar({ dict }: { dict: any }) {
+	const pages = getLegalPages(dict);
+	const privacyToc = getPrivacyTOC(dict);
+	const termsToc = getTermsTOC(dict);
 	const pathname = usePathname();
-	const currentToc = pathname === "/legal/terms" ? TERMS_TOC : PRIVACY_TOC;
+	const currentToc = pathname === "/legal/terms" ? termsToc : privacyToc;
 	return (
 		<Sidebar
-			className="top-0 h-[calc(100svh-4rem)] border-r bg-background"
+			className="top-0 h-[calc(100svh)] border-r bg-background"
 			collapsible="offcanvas"
-			side="left"
+			side={dict["TEXT_DIRECTION"] == "rtl" ? "right" : "left"}
 		>
 			<SidebarContent>
 				{/* Document Switcher */}
@@ -89,7 +67,7 @@ export function LegalSidebar({ dict }: { dict: any }) {
 					<SidebarGroupLabel>{dict.LegalSidebar.text_1}</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<SidebarMenu>
-							{LEGAL_PAGES.map((page) => {
+							{pages.map((page) => {
 								const isActive = pathname === page.href;
 								return (
 									<SidebarMenuItem key={page.href}>

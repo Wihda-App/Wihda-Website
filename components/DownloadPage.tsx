@@ -5,7 +5,7 @@ import { DownloadVisual } from "@/components/download-visual"; // Customized vis
 import { Button } from "@/components/ui/button";
 export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
 	return (
-		<div className="min-h-screen overflow-hidden bg-background flex flex-col font-display overflow-hidden relative">
+		<div className="min-h-screen overflow-hidden bg-background flex flex-col font-sans overflow-hidden relative">
 			{/* Background Gradients */}
 			<div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
 			<div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl -z-10"></div>

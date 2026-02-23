@@ -28,18 +28,21 @@ import {
 import { Button } from "@/components/ui/button";
 import Logo from "./logo";
 import { ModeToggle } from "./theme-button";
+import { LanguageSwitcher } from "./language-switch";
 export function SiteHeader({ dict }: { dict: any }) {
 	const pathname = usePathname();
-	const relativePaths = ["/help", "/legal"];
-	const isRelative = relativePaths.some((path) => pathname.startsWith(path));
+
+	const relativePaths = ["help", "legal"];
+
+	const isRelative = relativePaths.some((segment) =>
+		pathname.includes(`/${segment}`),
+	);
+
 	return (
 		<header
 			className={cn(
-				// 1. POSITIONING:
 				isRelative ? "relative py-4" : "absolute inset-x-0 top-4 md:top-10",
-				// 2. CENTERING:
 				"z-50 mx-auto bg-transparent",
-				// 3. WIDTH:
 				"max-w-7xl w-[calc(100%-2rem)]",
 			)}
 		>
@@ -98,6 +101,7 @@ export function SiteHeader({ dict }: { dict: any }) {
 
 				{/* Desktop Actions */}
 				<div className="hidden lg:flex items-center gap-2 xl:gap-4">
+					<LanguageSwitcher className="h-9 w-9 md:h-11 md:w-11 [&_svg]:h-5 [&_svg]:w-5" />
 					<ModeToggle
 						dict={dict}
 						className="h-9 w-9 md:h-11 md:w-11 [&_svg]:h-5 [&_svg]:w-5"
@@ -116,6 +120,8 @@ export function SiteHeader({ dict }: { dict: any }) {
 
 				{/* Mobile Navigation */}
 				<div className="lg:hidden flex items-center gap-1">
+					<LanguageSwitcher className="h-9 w-9 md:h-11 md:w-11 [&_svg]:h-5 [&_svg]:w-5" />
+
 					<ModeToggle dict={dict} className="h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" />
 					<Sheet>
 						<SheetTrigger asChild>

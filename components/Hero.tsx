@@ -12,13 +12,13 @@ export const Hero = ({ dict }: { dict: any }) => {
 			<div className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 					<div className="space-y-8 animate-fade-in-up text-center lg:text-left">
-						<h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-foreground">
+						<h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-foreground text-center lg:text-start">
 							{dict.Hero.text_1}
 							<br />
-							{dict.Hero.text_2}
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+							<span>{dict.Hero.text_2}</span> {/* This is the natural space */}
+							<span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary">
 								{dict.Hero.text_3}
-							</span>
+							</span>{" "}
 							.
 						</h1>
 

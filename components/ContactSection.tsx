@@ -101,7 +101,7 @@ function CitizenForm({ dict }: { dict: any }) {
 									</FormLabel>
 									<FormControl>
 										<Input
-											placeholder="Jane Doe"
+											placeholder={dict.ContactForms.citizen_name_placeholder}
 											className="h-12 bg-white dark:bg-neutral-surface-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20"
 											{...field}
 										/>
@@ -121,7 +121,7 @@ function CitizenForm({ dict }: { dict: any }) {
 									<FormControl>
 										<Input
 											type="email"
-											placeholder="jane@example.com"
+											placeholder={dict.ContactForms.citizen_email_placeholder}
 											className="h-12 bg-white dark:bg-neutral-surface-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20"
 											{...field}
 										/>
@@ -145,8 +145,12 @@ function CitizenForm({ dict }: { dict: any }) {
 									defaultValue={field.value}
 								>
 									<FormControl>
-										<SelectTrigger className="h-12 w-full bg-white dark:bg-neutral-surface-dark border-2 border-border focus:border-wihda-blue">
-											<SelectValue placeholder="Select a topic" />
+										<SelectTrigger className="h-12 w-full bg-white dark:bg-neutral-surface-dark border-2 border-border focus:border-wihda-blue text-start">
+											<SelectValue
+												placeholder={
+													dict.ContactForms.citizen_topic_placeholder
+												}
+											/>
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
@@ -179,7 +183,7 @@ function CitizenForm({ dict }: { dict: any }) {
 								</FormLabel>
 								<FormControl>
 									<Textarea
-										placeholder="How can we help you today?"
+										placeholder={dict.ContactForms.citizen_message_placeholder}
 										rows={5}
 										className="bg-white dark:bg-neutral-surface-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20 resize-none"
 										{...field}
@@ -196,9 +200,11 @@ function CitizenForm({ dict }: { dict: any }) {
 							disabled={mutation.isPending}
 							className="group w-full bg-wihda-blue hover:bg-wihda-blue/90 text-white font-bold text-lg py-6 rounded-lg shadow-lg shadow-wihda-blue/20 transition-all flex items-center justify-center gap-2"
 						>
-							{mutation.isPending ? "Sending..." : "Send Message"}
+							{mutation.isPending
+								? dict.ContactForms.citizen_btn_sending
+								: dict.ContactForms.citizen_btn_send}
 							{!mutation.isPending && (
-								<span className="material-icons text-white group-hover:translate-x-1 transition-transform">
+								<span className="material-icons text-white group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">
 									{dict.CitizenForm.text_12}
 								</span>
 							)}
@@ -264,7 +270,7 @@ function PartnerForm({ dict }: { dict: any }) {
 									</FormLabel>
 									<FormControl>
 										<Input
-											placeholder="City of..."
+											placeholder={dict.ContactForms.partner_org_placeholder}
 											className="h-12 bg-background-light dark:bg-background-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20"
 											{...field}
 										/>
@@ -285,7 +291,7 @@ function PartnerForm({ dict }: { dict: any }) {
 										</FormLabel>
 										<FormControl>
 											<Input
-												placeholder="Your Name"
+												placeholder={dict.ContactForms.partner_name_placeholder}
 												className="h-12 bg-background-light dark:bg-background-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20"
 												{...field}
 											/>
@@ -305,7 +311,9 @@ function PartnerForm({ dict }: { dict: any }) {
 										<FormControl>
 											<Input
 												type="email"
-												placeholder="official@gov.org"
+												placeholder={
+													dict.ContactForms.partner_email_placeholder
+												}
 												className="h-12 bg-background-light dark:bg-background-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20"
 												{...field}
 											/>
@@ -326,7 +334,9 @@ function PartnerForm({ dict }: { dict: any }) {
 									</FormLabel>
 									<FormControl>
 										<Textarea
-											placeholder="Briefly describe your goals and interest in Wihda..."
+											placeholder={
+												dict.ContactForms.partner_proposal_placeholder
+											}
 											rows={4}
 											className="bg-background-light dark:bg-background-dark border-2 border-border focus-visible:border-wihda-blue focus-visible:ring-wihda-blue/20 resize-none"
 											{...field}
@@ -343,7 +353,9 @@ function PartnerForm({ dict }: { dict: any }) {
 								disabled={mutation.isPending}
 								className="group w-full bg-neutral-dark dark:bg-white hover:bg-neutral-dark/90 dark:hover:bg-white/90 text-white dark:text-neutral-dark font-bold text-lg py-6 rounded-lg shadow-lg shadow-neutral-dark/10 transition-all flex items-center justify-center gap-2"
 							>
-								{mutation.isPending ? "Submitting..." : "Submit Proposal"}
+								{mutation.isPending
+									? dict.ContactForms.partner_btn_submitting
+									: dict.ContactForms.partner_btn_submit}
 								{!mutation.isPending && (
 									<span className="material-icons text-wihda-green group-hover:scale-110 transition-transform">
 										{dict.PartnerForm.text_8}

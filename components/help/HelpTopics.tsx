@@ -29,7 +29,7 @@ export function HelpTopics({ category, dict }: HelpTopicsProps) {
 		<section>
 			<div className="flex items-center justify-between mb-6">
 				<h3 className="text-xl font-bold text-foreground">
-					{category ? "Articles in this section" : "Top Questions"}
+					{category ? dict.helpHeader.text_1 : dict.helpHeader.text_2}
 				</h3>
 				<div className="flex gap-2">
 					<Button

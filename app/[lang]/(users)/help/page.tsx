@@ -1,14 +1,9 @@
 import { getDictionary } from "@/locales/dictionaries";
-import { Footer } from "@/components/Footer";
 import { HelpSearch } from "@/components/help/HelpSearch";
 import { HelpTopics } from "@/components/help/HelpTopics";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-	title: "Wihda Help Center",
-	description: "Find answers, browse topics, and get support for Wihda.",
-};
+
 export default async function HelpPage({
 	params,
 }: {
@@ -63,8 +58,6 @@ export default async function HelpPage({
 				className="fixed bottom-0 left-0 -z-10 w-125 h-125 bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/3 translate-y-1/4"
 				aria-hidden="true"
 			/>
-
-			<Footer dict={dict} />
 		</section>
 	);
 }

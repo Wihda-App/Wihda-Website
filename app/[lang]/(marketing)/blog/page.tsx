@@ -20,7 +20,7 @@ export default async function BlogPage({
 	const posts = getAllPosts();
 	return (
 		<div className="flex flex-col min-h-screen">
-			<main className="flex-grow">
+			<main className="grow">
 				<BlogFeed initialPosts={posts} dict={dict} />
 			</main>
 			<Footer dict={dict} />

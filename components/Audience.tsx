@@ -1,38 +1,38 @@
 import React from "react";
 import { FeatureCardProps } from "../types";
-const CARDS: FeatureCardProps[] = [
-	{
-		icon: "face",
-		title: "Citizens",
-		description:
-			"Make your voice heard. Report issues, propose ideas, and track the progress of civic projects in your neighborhood.",
-		colorClass: "bg-primary",
-		iconBgClass:
-			"bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white",
-		hoverClass: "group-hover:scale-150",
-	},
-	{
-		icon: "account_balance",
-		title: "Leaders",
-		description:
-			"Connect directly with constituents. Understand real-time needs and demonstrate transparency in your governance.",
-		colorClass: "bg-secondary",
-		iconBgClass:
-			"bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white",
-		hoverClass: "group-hover:scale-150",
-	},
-	{
-		icon: "handshake",
-		title: "Partners",
-		description:
-			"Amplify your impact. NGOs and businesses can coordinate resources and volunteers more effectively.",
-		colorClass: "bg-purple-500",
-		iconBgClass:
-			"bg-purple-100 dark:bg-purple-900/30 text-purple-600 group-hover:bg-purple-600 group-hover:text-white",
-		hoverClass: "group-hover:scale-150",
-	},
-];
+
 export const Audience = ({ dict }: { dict: any }) => {
+	// Move CARDS inside the component so it can access 'dict'
+	const CARDS: FeatureCardProps[] = [
+		{
+			icon: "face",
+			title: dict.AudienceCards.text_1,
+			description: dict.AudienceCards.text_2,
+			colorClass: "bg-primary",
+			iconBgClass:
+				"bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white",
+			hoverClass: "group-hover:scale-150",
+		},
+		{
+			icon: "account_balance",
+			title: dict.AudienceCards.text_3,
+			description: dict.AudienceCards.text_4,
+			colorClass: "bg-secondary",
+			iconBgClass:
+				"bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white",
+			hoverClass: "group-hover:scale-150",
+		},
+		{
+			icon: "handshake",
+			title: dict.AudienceCards.text_5,
+			description: dict.AudienceCards.text_6,
+			colorClass: "bg-purple-500",
+			iconBgClass:
+				"bg-purple-100 dark:bg-purple-900/30 text-purple-600 group-hover:bg-purple-600 group-hover:text-white",
+			hoverClass: "group-hover:scale-150",
+		},
+	];
+
 	return (
 		<section className="py-24 bg-background-light dark:bg-background-dark">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
