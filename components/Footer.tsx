@@ -99,6 +99,14 @@ export const Footer = ({ dict }: { dict: any }) => {
 										{dict.Footer.text_14}
 									</Link>
 								</li>
+								<li>
+									<Link
+										href="/feedback"
+										className="hover:text-primary transition-colors"
+									>
+										{dict.Footer.text_28}
+									</Link>
+								</li>
 							</ul>
 						</div>
 						<div>

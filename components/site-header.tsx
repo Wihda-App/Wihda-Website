@@ -10,6 +10,7 @@ import {
 	Newspaper,
 	HelpCircle,
 	Download,
+	UserRoundPenIcon,
 } from "lucide-react";
 import {
 	NavigationMenu,
@@ -93,6 +94,18 @@ export function SiteHeader({ dict }: { dict: any }) {
 									)}
 								>
 									{dict.SiteHeader.text_4}
+								</NavigationMenuLink>
+							</NavigationMenuItem>
+							<NavigationMenuItem>
+								<NavigationMenuLink
+									href="/feedback"
+									className={cn(
+										navigationMenuTriggerStyle(),
+										"bg-transparent hover:bg-accent/50 text-xs md:text-lg xl:text-xl font-bold px-2 md:px-3 xl:px-6 h-10 md:h-12",
+										pathname === "/feedback" && "text-primary",
+									)}
+								>
+									{dict.SiteHeader.text_13}
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 						</NavigationMenuList>
@@ -193,6 +206,16 @@ export function SiteHeader({ dict }: { dict: any }) {
 									>
 										<HelpCircle className="h-5 w-5" />
 										<span>{dict.SiteHeader.text_11}</span>
+									</Link>
+									<Link
+										href="/feedback"
+										className={cn(
+											"flex items-center gap-4 text-2xl font-bold transition-colors hover:text-primary p-4 -ml-4 rounded-md hover:bg-accent/50",
+											pathname === "/feedback" && "text-primary bg-primary/5",
+										)}
+									>
+										<UserRoundPenIcon className="h-5 w-5" />
+										<span>{dict.SiteHeader.text_13}</span>
 									</Link>
 								</div>
 							</div>

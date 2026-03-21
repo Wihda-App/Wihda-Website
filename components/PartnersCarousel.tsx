@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { cn } from "@/lib/utils";
 import { Partner } from "@/types/partner";
+import { useTheme } from "next-themes";
 interface PartnersCarouselProps {
 	partners: Partner[];
 	dict: any;
@@ -13,7 +14,10 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({
 	partners,
 	dict,
 }) => {
-	// Multiply partners significantly to ensure smooth infinite scroll
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []); // Multiply partners significantly to ensure smooth infinite scroll
+
 	// even on very wide screens or with few partners.
 	const displayedPartners = [
 		...partners,
@@ -58,45 +62,52 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({
 				ref={emblaRef}
 			>
 				<div className="flex touch-pan-y">
-					{displayedPartners.map((partner, index) => {
-						const logoClasses = cn(
-							"w-auto object-contain",
-							partner.className || "h-16",
-							partner.whiteLogo &&
-								"bg-neutral-800 dark:bg-transparent p-2 rounded-full shadow-sm",
-						);
-						return (
-							<div
-								key={`${partner.name}-${index}`}
-								className="flex-[0_0_auto] min-w-0 px-8 md:px-14 flex items-center justify-center relative z-20"
-							>
-								<a
-									href={partner.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="block transition-transform duration-300 hover:scale-110 select-none"
-									draggable={false}
+					{mounted &&
+						displayedPartners.map((partner, index) => {
+							const logoClasses = cn(
+								"w-auto object-contain",
+								partner.className || "h-16",
+								partner.whiteLogo &&
+									"bg-neutral-800 dark:bg-transparent p-2 rounded-full shadow-sm",
+							);
+							return (
+								<div
+									key={`${partner.name}-${index}`}
+									className="flex-[0_0_auto] min-w-0 px-8 md:px-14 flex items-center justify-center relative z-20"
 								>
-									{typeof partner.logo === "string" ? (
-										<img
-											src={partner.logo}
-											alt={partner.name}
-											className={logoClasses}
-											draggable={false}
-										/>
-									) : (
-										React.isValidElement(partner.logo) &&
-										React.cloneElement(partner.logo as React.ReactElement, {
-											className: cn(
-												logoClasses,
-												(partner.logo.props as any).className,
-											),
-										})
-									)}
-								</a>
-							</div>
-						);
-					})}
+									<a
+										href={partner.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="block transition-transform duration-300 hover:scale-110 select-none"
+										draggable={false}
+									>
+										{typeof partner.logo === "string" ? (
+											<img
+												src={
+													mounted &&
+													resolvedTheme === "dark" &&
+													partner.darkLogo
+														? partner.darkLogo
+														: partner.logo
+												}
+												alt={partner.name}
+												className={logoClasses}
+												draggable={false}
+											/>
+										) : (
+											React.isValidElement(partner.logo) &&
+											React.cloneElement(partner.logo as React.ReactElement, {
+												className: cn(
+													logoClasses,
+													(partner.logo.props as any).className,
+												),
+											})
+										)}
+									</a>
+								</div>
+							);
+						})}
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,118 @@
 {
 	"TEXT_DIRECTION": "ltr",
+	"Feedback": {
+		"Section": {
+			"title": "Help Us Shape Wihda",
+			"subtitle": "Whether you're just hearing about our concept or actively testing our app, your voice matters. Share your thoughts below."
+		},
+		"Shared": {
+			"yes": "Yes",
+			"no": "No",
+			"maybe": "Maybe",
+			"not_sure": "Not sure",
+			"select_placeholder": "Select...",
+			"usefulness": {
+				"very_useful": "Very useful",
+				"useful": "Useful",
+				"neutral": "Neutral",
+				"not_useful": "Not useful"
+			},
+			"experience": {
+				"excellent": "Excellent",
+				"good": "Good",
+				"average": "Average",
+				"poor": "Poor"
+			},
+			"ease": {
+				"very_easy": "Very easy",
+				"easy": "Easy",
+				"difficult": "Difficult",
+				"very_difficult": "Very difficult"
+			},
+			"navigation": {
+				"yes": "Yes",
+				"somewhat": "Somewhat",
+				"no": "No"
+			},
+			"works": {
+				"yes": "Yes",
+				"mostly": "Mostly",
+				"no": "No"
+			},
+			"devices": {
+				"android": "Android",
+				"iphone": "iPhone",
+				"web": "Web App"
+			},
+			"features": {
+				"sharing": "Sharing items",
+				"helping": "Helping neighbors",
+				"activities": "Community activities",
+				"clean_earn": "Cleaning initiatives (Clean & Earn)",
+				"rewards": "Rewards system",
+				"posting": "Posting / Requests"
+			}
+		},
+		"IdeaForm": {
+			"badge": "Concept Validation",
+			"title": "Wihda Idea Feedback",
+			"description": "Help us understand your opinion about the Wihda concept. Your feedback will help shape the future of the platform.",
+			"section1": "1. About You (Optional)",
+			"name_label": "Name",
+			"name_placeholder": "Your Name",
+			"anonymous_label": "Stay anonymous?",
+			"neighborhood_label": "Neighborhood",
+			"neighborhood_placeholder": "Your Neighborhood",
+			"city_label": "City",
+			"city_placeholder": "Your City",
+			"section2": "2. Opinion About the Idea",
+			"opinion_label": "What do you think about the Wihda idea? *",
+			"opinion_placeholder": "Your thoughts...",
+			"usefulness_label": "How useful would it be?",
+			"personal_use_label": "Would you use it?",
+			"neighbor_use_label": "Would neighbors use it?",
+			"section3": "3. Problem & Relevance",
+			"lack_connection_label": "Do you feel a lack of community connection in your area?",
+			"features_interest_label": "Which features interest you the most?",
+			"section4": "4. Improvements & Final Thoughts",
+			"improve_label": "What would you improve or change in this idea?",
+			"concerns_label": "What concerns or doubts do you have?",
+			"suggestions_label": "Any additional suggestions?",
+			"btn_submit": "Share Your Thoughts on the Idea",
+			"btn_submitting": "Submitting...",
+			"toast_success": "Thank you! Your idea feedback has been submitted.",
+			"toast_error": "Failed to submit feedback."
+		},
+		"AppForm": {
+			"badge": "Product Testing",
+			"title": "Wihda App Feedback",
+			"description": "You’ve tried the Wihda app. Tell us what worked, what didn’t, and how we can improve.",
+			"section1": "1. Basic Info",
+			"name_label": "Name (Optional)",
+			"name_placeholder": "Your Name",
+			"device_label": "Device Used *",
+			"section2": "2. Experience & Design",
+			"experience_label": "Overall Experience",
+			"ease_label": "Ease of Use",
+			"nav_label": "Clear Navigation?",
+			"design_label": "What do you think about the design (colors, layout)?",
+			"section3": "3. Features & Bugs",
+			"features_tried_label": "Which features did you try?",
+			"works_label": "Did everything work as expected?",
+			"bugs_label": "Did you encounter any bugs?",
+			"bug_desc_label": "Please describe the issue:",
+			"section4": "4. Improvements & Final Verdict",
+			"dislikes_label": "What did you NOT like about the app?",
+			"improve_first_label": "What should we improve first?",
+			"use_regularly_label": "Would you use this app regularly?",
+			"recommend_label": "Would you recommend it?",
+			"additional_label": "Any additional feedback?",
+			"btn_submit": "Test the App & Share Feedback",
+			"btn_submitting": "Submitting...",
+			"toast_success": "Thank you! Your app feedback has been submitted.",
+			"toast_error": "Failed to submit feedback."
+		}
+	},
 	"YourWorkInSync": {
 		"text_1": "Team updates flow seamlessly",
 		"text_2": "Hi everyone",
@@ -37,7 +150,8 @@
 		"text_9": "About",
 		"text_10": "Blog",
 		"text_11": "Help Center",
-		"text_12": "Download App"
+		"text_12": "Download App",
+		"text_13": "Feedback"
 	},
 	"ProblemMission": {
 		"text_1": "Report an Issue",
@@ -209,7 +323,8 @@
 		"text_24": "Privacy Policy",
 		"text_25": "Terms of Service",
 		"text_26": "Wihda",
-		"text_27": "Wihda Inc. All rights reserved."
+		"text_27": "Wihda Inc. All rights reserved.",
+		"text_28": "Feedback"
 	},
 	"FooterSection": {
 		"text_1": "Wihda",
@@ -282,7 +397,11 @@
 		"text_21": "verified_user",
 		"text_22": "Verified Secure",
 		"text_23": "check_circle",
-		"text_24": "Free Forever"
+		"text_24": "Free Forever",
+		"web_or": "or use the web",
+		"web_label": "Open in Browser",
+		"web_cta": "app.wihdaapp.com",
+		"report_bug_btn": "Report Bug"
 	},
 	"TARGET_HEIGHT": {
 		"text_1": "My neighbor",

@@ -1,13 +1,8 @@
 import React from "react";
 import { PartnersCarousel } from "./PartnersCarousel";
 import MenaLogo from "./mena-logo";
-interface Partner {
-	name: string;
-	logo: string | React.JSX.Element;
-	url: string;
-	className?: string;
-	whiteLogo?: boolean;
-}
+import { Partner } from "@/types/partner";
+
 const PARTNERS: Partner[] = [
 	{
 		name: "Code for MENA",
@@ -18,7 +13,8 @@ const PARTNERS: Partner[] = [
 	{
 		name: "Digital Democracy Initiative",
 		logo: "/images/digital-democracy-initiative.jpg",
-		url: "https://www.civicus.org/index.php/what-we-do/enabling-and-resourcing/digital-democracy-initiative",
+		darkLogo: "/images/digital-democracy-initiative-dark.png",
+		url: "https://digitaldemocracyinitiative.net/",
 		className: "h-24 md:h-32",
 	},
 	{
