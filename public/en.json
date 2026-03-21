@@ -655,7 +655,8 @@
 	"Input_PlaceHolder": {
 		"email": "Enter Your Email",
 		"help_search": "Search for articles, topics, or keywords...",
-		"blog_search": "Search articles..."
+		"blog_search": "Search articles...",
+		"download_visual": "Search..."
 	},
 	"BlogFeedCategories": {
 		"All": "All",

@@ -138,7 +138,12 @@ export function SiteHeader({ dict }: { dict: any }) {
 							side="right"
 							className="flex flex-col w-75 sm:w-100 p-0 border-l border-border"
 						>
-							<SheetHeader className="p-6 text-left border-b border-border bg-muted/20">
+							<SheetHeader
+								className={cn(
+									"p-6 text-left border-b border-border bg-muted/20",
+									dict.TEXT_DIRECTION == "rtl" && "text-right",
+								)}
+							>
 								<div className="flex items-center gap-3">
 									<Logo className="h-16 w-16" />
 									<SheetTitle className="font-sans font-bold text-3xl tracking-tight">

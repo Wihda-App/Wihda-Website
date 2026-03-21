@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Logo from "./logo";
-import { Scale } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // A custom hook to measure element dimensions dynamically
 const useImageDimensions = () => {
@@ -109,7 +109,7 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 	return (
 		<div className="relative w-full h-150 flex items-center justify-center perspective-1000">
 			{/* Hand Holding Phone Container */}
-			<div className="relative w-130 h-full flex items-end justify-center pb-0">
+			<div className="relative w-110 md:w-130 h-110 md:h-full flex items-end justify-center pb-0">
 				{/* 1. WRAPPER CONTAINER: Controls unified scaling and masking */}
 				<div
 					className={`relative w-full aspect-square drop-shadow-2xl mask-[linear-gradient(to_bottom,transparent_10%,black_50%,black_85%,transparent_100%)] ${isActive ? "z-20" : "z-10"}`}
@@ -123,7 +123,7 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 						onLoad={handleImageLoad}
 						src={
 							isActive
-								? "/images/output-onlinepngtools.png"
+								? "/images/holding-phone-transparent.png"
 								: "/images/holding-phone.png"
 						}
 						alt="App usage demonstration"
@@ -160,9 +160,10 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 											d="M4 6h16M4 12h16M4 18h16"
 										/>
 									</svg>
-									<div className="bg-white border border-secondary rounded-full p-1 flex relative w-40 h-6 shadow-sm">
+									{/* Replaced bg-white with bg-card */}
+									<div className="bg-card border border-secondary rounded-full p-1 flex relative w-40 h-6 shadow-sm">
 										<div className="absolute right-0.5 top-0.5 bottom-0.5 w-1/2 bg-secondary rounded-full transition-all duration-300 shadow-sm"></div>
-										<div className="flex-1 flex justify-center items-center z-10 text-secondary font-bold text-[8px]">
+										<div className="flex-1 flex justify-center items-center z-10 text-gray-50 font-bold text-[8px]">
 											{dict.TARGET_HEIGHT.text_1}
 										</div>
 										<div className="flex-1 flex justify-center items-center z-10 text-white font-bold text-[8px]">
@@ -213,10 +214,11 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 							{/* --- SEARCH & TABS (Static) --- */}
 							<div className="px-3 pt-2 bg-background shrink-0">
 								<div className="relative mb-2">
+									{/* Replaced bg-white with bg-input */}
 									<input
 										type="text"
-										placeholder="Type..."
-										className="w-full h-8 pl-7 pr-7 rounded-xl border-2 border-primary bg-white text-muted-foreground placeholder-muted-foreground/60 focus:outline-none focus:ring-0 text-xs"
+										placeholder={dict.Input_PlaceHolder.download_visual}
+										className="w-full h-8 pl-5 pr-5 rounded-xl border-2 border-primary bg-input text-foreground placeholder-muted-foreground/60 focus:outline-none focus:ring-0 text-xs"
 										readOnly
 									/>
 									<svg
@@ -230,19 +232,6 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 											strokeLinejoin="round"
 											strokeWidth={2}
 											d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-										/>
-									</svg>
-									<svg
-										className="w-5 h-5 text-primary absolute right-2 top-2"
-										fill="none"
-										stroke="currentColor"
-										viewBox="0 0 24 24"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
 										/>
 									</svg>
 								</div>
@@ -275,9 +264,15 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 													{dict.TARGET_HEIGHT.text_9}
 												</p>
 											</div>
-											<div className="bg-primary/10 rounded-lg p-3 text-left border border-primary/20">
+											<div
+												className={cn(
+													"bg-primary/10 rounded-lg p-3 text-left border border-primary/20",
+													dict.TEXT_DIRECTION == "rtl" && "text-right",
+												)}
+											>
 												<div className="flex items-start gap-2">
-													<div className="bg-white p-1 rounded-lg shadow-sm text-primary">
+													{/* Replaced bg-white with bg-background */}
+													<div className="bg-background p-1 rounded-lg shadow-sm text-primary">
 														<svg
 															className="w-3 h-3"
 															fill="none"
@@ -364,7 +359,8 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 									<div className="mx-3 mt-3 animate-in fade-in slide-in-from-right-4 duration-500">
 										<div className="bg-card rounded-2xl p-4 shadow-sm border border-border text-center space-y-4">
 											<div className="relative w-full aspect-[4/3] bg-muted rounded-xl border border-dashed border-muted-foreground/30 flex flex-col items-center justify-center overflow-hidden group">
-												<div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors" />
+												{/* Replaced bg-black/5 with bg-foreground/5 for dark mode contrast */}
+												<div className="absolute inset-0 bg-foreground/5 group-hover:bg-foreground/10 transition-colors" />
 												<svg
 													className="w-8 h-8 text-muted-foreground mb-1"
 													fill="none"
@@ -396,10 +392,11 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 													{dict.TARGET_HEIGHT.text_17}
 												</p>
 											</div>
+											{/* Replaced hover:bg-black and text-white with hover:bg-foreground/90 and text-background */}
 											<button
 												onClick={() => handleTakePhoto(2)}
 												disabled={isProcessing}
-												className="w-full bg-foreground hover:bg-black text-white font-bold py-2 rounded-xl shadow-lg transition-all active:scale-95 flex justify-center items-center gap-1.5"
+												className="w-full bg-foreground hover:bg-foreground/90 text-background font-bold py-2 rounded-xl shadow-lg transition-all active:scale-95 flex justify-center items-center gap-1.5"
 											>
 												{isProcessing ? "Uploading..." : "Capture"}
 											</button>
@@ -419,7 +416,8 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 												}}
 											></div>
 											<div className="relative z-10">
-												<div className="w-16 h-16 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-secondary mb-2">
+												{/* Replaced bg-white with bg-card */}
+												<div className="w-16 h-16 mx-auto bg-card rounded-full shadow-lg flex items-center justify-center border-2 border-secondary mb-2">
 													<span className="text-lg font-mono font-bold text-foreground">
 														{formatTime(timeLeft)}
 													</span>
@@ -446,7 +444,6 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 													</div>
 												</div>
 
-												{/* --- NEW SKIP BUTTON --- */}
 												<button
 													onClick={() => setTimeLeft(0)}
 													className="w-full mt-4 bg-secondary/10 hover:bg-secondary/20 text-secondary font-bold py-2 rounded-xl text-xs transition-all active:scale-95 flex justify-center items-center gap-1.5"
@@ -466,7 +463,6 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 													</svg>
 													{dict.TARGET_HEIGHT.text_24}
 												</button>
-												{/* ----------------------- */}
 											</div>
 										</div>
 									</div>
@@ -587,7 +583,8 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 											</div>
 											<div className="bg-primary/10 rounded-xl p-3 border border-primary/20 flex items-center justify-between">
 												<div className="flex items-center gap-2">
-													<div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-yellow-500 shadow-sm">
+													{/* Replaced bg-white with bg-background */}
+													<div className="w-8 h-8 rounded-full bg-background flex items-center justify-center text-yellow-500 shadow-sm">
 														<span className="font-bold text-base">$</span>
 													</div>
 													<div className="text-left">
@@ -599,16 +596,18 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 														</div>
 													</div>
 												</div>
-												<div className="text-primary font-bold text-[8px] bg-white px-1.5 py-0.5 rounded-md shadow-sm">
+												{/* Replaced bg-white with bg-background */}
+												<div className="text-primary font-bold text-[8px] bg-background px-1.5 py-0.5 rounded-md shadow-sm">
 													{dict.TARGET_HEIGHT.text_34}
 												</div>
 											</div>
+											{/* Replaced text-white with text-background */}
 											<button
 												onClick={() => {
 													setStep(0);
 													setTimeLeft(20 * 60);
 												}}
-												className="w-full bg-foreground text-white font-bold py-2 rounded-xl mt-1"
+												className="w-full bg-foreground hover:bg-foreground/90 text-background font-bold py-2 rounded-xl mt-1 transition-all"
 											>
 												{dict.TARGET_HEIGHT.text_35}
 											</button>
@@ -624,9 +623,10 @@ export const DownloadVisual = ({ dict }: { dict: any }) => {
 			{/* 3. FLOATING CARD - SHOWN ONLY IN START STATE */}
 			{!isActive && (
 				<div className="absolute top-[20%] right-4 md:top-[28%] md:-right-0 lg:-right-5 z-20 animate-float-slow">
+					{/* Made bg-card/90 universal since it responds directly to CSS vars */}
 					<div
 						onClick={() => setIsActive(true)}
-						className="bg-card/90 dark:bg-neutral-900/90 backdrop-blur-md border border-border shadow-2xl rounded-[2rem] p-5 w-64 md:w-72 flex flex-col gap-4 transition-all hover:scale-105 duration-300 cursor-pointer group hover:border-primary/50"
+						className="bg-card/90 backdrop-blur-md border border-border shadow-2xl rounded-[2rem] p-5 w-64 md:w-72 flex flex-col gap-4 transition-all hover:scale-105 duration-300 cursor-pointer group hover:border-primary/50"
 					>
 						<div className="flex items-center gap-3">
 							<div className="w-10 h-10 rounded-2xl bg-linear-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20 shrink-0 group-hover:rotate-12 transition-transform">

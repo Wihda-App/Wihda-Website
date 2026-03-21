@@ -30,6 +30,7 @@ import {
 	type PartnerFormValues,
 	type ContactPayload,
 } from "@/lib/schemas/contact";
+import { cn } from "@/lib/utils";
 
 // ─── Shared API call ────────────────────────────────────────────────────────────
 
@@ -403,7 +404,12 @@ export function ContactSection({ dict }: { dict: any }) {
 
 				{/* Trust/Info Bar */}
 				<div className="mt-24 pt-12 border-t border-border">
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+					<div
+						className={cn(
+							"grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left",
+							dict.TEXT_DIRECTION == "rtl" && "md:text-right",
+						)}
+					>
 						<div className="flex items-start gap-4">
 							<div className="flex-shrink-0 w-12 h-12 rounded-full bg-wihda-blue/10 flex items-center justify-center text-wihda-blue">
 								<span className="material-icons">

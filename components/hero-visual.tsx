@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Users, Leaf, Trophy, MapPin, Calendar, Star } from "lucide-react";
+import { cn } from "@/lib/utils";
 export const HeroVisual = ({ dict }: { dict: any }) => {
 	return (
 		<div className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center perspective-1000 my-8 md:my-0 scale-90 sm:scale-100">
@@ -172,7 +173,12 @@ export const HeroVisual = ({ dict }: { dict: any }) => {
 
 			{/* Floating Card 3: Rewards (Bottom Left) */}
 			<Card className="absolute bottom-[40%] -left-[5%] md:bottom-24 md:-left-8 w-56 md:w-64 shadow-xl border-yellow-500/20 animate-float-fast z-50 bg-background/95 backdrop-blur hover:scale-105 transition-transform duration-300">
-				<CardContent className="p-3 md:p-4 flex gap-3 text-left">
+				<CardContent
+					className={cn(
+						"p-3 md:p-4 flex gap-3 text-left",
+						dict.TEXT_DIRECTION == "rtl" && "text-right",
+					)}
+				>
 					<div className="relative">
 						<div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-yellow-400/20 to-orange-500/20 flex items-center justify-center shrink-0 border border-yellow-500/20">
 							<Trophy className="w-5 h-5 md:w-6 md:h-6 text-yellow-600 drop-shadow-sm" />

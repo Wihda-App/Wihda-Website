@@ -7,6 +7,7 @@ import {
 	getArticlesByCategory,
 	type HelpArticle,
 } from "@/lib/help-data";
+import { cn } from "@/lib/utils";
 interface HelpTopicsProps {
 	/** When provided, only articles for this category are shown */
 	category?: string;
@@ -89,7 +90,12 @@ export function HelpTopics({ category, dict }: HelpTopicsProps) {
 			</div>
 
 			{!category && articles.length > 5 && (
-				<div className="mt-8 text-center lg:text-left">
+				<div
+					className={cn(
+						"mt-8 text-center lg:text-left",
+						dict.TEXT_DIRECTION == "rtl" && "lg:text-right",
+					)}
+				>
 					<Button
 						variant="ghost"
 						className="text-primary font-bold hover:text-primary/80 gap-2 mx-auto lg:mx-0"

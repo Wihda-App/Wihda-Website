@@ -3,7 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { DownloadVisual } from "@/components/download-visual"; // Customized visual for download page
 import { Button } from "@/components/ui/button";
-export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
+import { cn } from "@/lib/utils";
+export const DownloadPageComponent = ({ dict }: { dict: any }) => {
 	return (
 		<div className="min-h-screen overflow-hidden bg-background flex flex-col font-sans overflow-hidden relative">
 			{/* Background Gradients */}
@@ -13,20 +14,25 @@ export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
 			<main className="flex-grow flex items-center justify-center px-4 py-20 w-full max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
 					{/* Left Column: Content & CTA */}
-					<div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 animate-fade-in-up order-2 lg:order-1">
+					<div
+						className={cn(
+							"flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 animate-fade-in-up order-2 lg:order-1",
+							dict.TEXT_DIRECTION == "rtl" && "lg:text-right",
+						)}
+					>
 						{/* Headlines */}
 						<div className="space-y-4">
 							<h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1]">
 								{dict.DownloadPage.text_1}
 								<br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-									{dict.DownloadPage.text_2}
+									{dict.DownloadPage.text_2}{" "}
 								</span>
 							</h1>
 							<p className="text-xl text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
-								{dict.DownloadPage.text_3}
+								{dict.DownloadPage.text_3}{" "}
 								<span className="text-foreground font-bold">
-									{dict.DownloadPage.text_4}
+									{dict.DownloadPage.text_4}{" "}
 								</span>
 								{dict.DownloadPage.text_5}
 							</p>
@@ -66,7 +72,12 @@ export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
 										<span className="material-icons text-3xl">
 											{dict.DownloadPage.text_9}
 										</span>
-										<div className="text-left leading-tight">
+										<div
+											className={cn(
+												"text-left leading-tight",
+												dict.TEXT_DIRECTION == "rtl" && "text-right",
+											)}
+										>
 											<div className="text-[10px] uppercase font-medium opacity-80">
 												{dict.DownloadPage.text_10}
 											</div>
@@ -85,7 +96,12 @@ export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
 										<span className="material-icons text-3xl">
 											{dict.DownloadPage.text_12}
 										</span>
-										<div className="text-left leading-tight">
+										<div
+											className={cn(
+												"text-left leading-tight",
+												dict.TEXT_DIRECTION == "rtl" && "text-right",
+											)}
+										>
 											<div className="text-[10px] uppercase font-medium opacity-80">
 												{dict.DownloadPage.text_13}
 											</div>
@@ -99,7 +115,7 @@ export const DownloadPageComponent = async ({ dict }: { dict: any }) => {
 						</div>
 
 						{/* Trust Indicators */}
-						<div className="flex items-center gap-6 pt-4 border-t border-border/40 w-full justify-center lg:justify-start">
+						<div className="flex items-center gap-6 pt-4 border-t border-border/40 w-full justify-center lg:justify-start flex-wrap">
 							<div className="flex items-center gap-1">
 								<div className="flex text-yellow-500">
 									<span className="material-icons text-sm">

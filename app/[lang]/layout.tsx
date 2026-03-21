@@ -5,6 +5,7 @@ import "../globals.css";
 import { Toaster } from "sonner";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 const fredoka = Fredoka({
 	subsets: ["latin"],
 	variable: "--font-sans",
@@ -65,7 +66,12 @@ export default async function RootLayout({
 					rel="stylesheet"
 				/>
 			</head>
-			<body className="antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary bg-background-light dark:bg-background-dark text-neutral-dark dark:text-foreground">
+			<body
+				className={cn(
+					"antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary bg-background-light dark:bg-background-dark text-neutral-dark dark:text-foreground",
+					lang == "ar" && "text-right",
+				)}
+			>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

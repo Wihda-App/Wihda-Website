@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 export const Mockups = ({ dict }: { dict: any }) => {
 	return (
@@ -28,7 +29,12 @@ export const Mockups = ({ dict }: { dict: any }) => {
 								src="/images/neighbors.PNG"
 							/>
 						</div>
-						<div className="absolute -bottom-24 left-1/2 -translate-x-1/2 md:bottom-auto md:-top-12 md:-left-12 md:translate-x-0 bg-white/90 dark:bg-neutral-dark/90 backdrop-blur p-4 rounded-xl border border-secondary shadow-lg max-w-[180px] text-center md:text-left">
+						<div
+							className={cn(
+								"absolute -bottom-24 left-1/2 -translate-x-1/2 md:bottom-auto md:-top-12 md:-left-12 md:translate-x-0 bg-white/90 dark:bg-neutral-dark/90 backdrop-blur p-4 rounded-xl border border-secondary shadow-lg max-w-[180px] text-center md:text-left",
+								dict.TEXT_DIRECTION == "rtl" && "md:text-right",
+							)}
+						>
 							<p className="text-xs font-bold text-secondary uppercase tracking-widest mb-1">
 								{dict.Mockups.text_6}
 							</p>
