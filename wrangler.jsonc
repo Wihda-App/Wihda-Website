@@ -1,18 +1,23 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
-  "name": "wihda",
-  "compatibility_date": "2026-02-11",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-  "routes": [
-    {
-      "pattern": "wihdaapp.com",
-      "custom_domain": true
-    }
-  ]
-
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "wihda",
+	"compatibility_date": "2026-02-11",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS",
+	},
+	"routes": [
+		{
+			"pattern": "wihdaapp.com",
+			"custom_domain": true,
+		},
+	],
+	"observability": {
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true,
+		},
+	},
 }
